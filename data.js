@@ -1,3 +1,33 @@
+export const navData = {
+    en: {
+        home: "Home",
+        aboutUs: "About Us",
+        services: "Services",
+        gallery: "Gallery",
+    },
+    ar: {
+        home: "الرئيسية",
+        aboutUs: "عنّا",
+        services: "خدماتنا",
+        gallery: "الصور",
+    },
+};
+
+export const sidebarData = {
+    en: {
+        home: "Home",
+        aboutUs: "About Us",
+        services: "Services",
+        gallery: "Gallery",
+    },
+    ar: {
+        home: "الرئيسية",
+        aboutUs: "عنّا",
+        services: "خدماتنا",
+        gallery: "الصور",
+    },
+};
+
 export const servicesData = [
     {
         title: "Safety & Security",

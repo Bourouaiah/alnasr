@@ -1,18 +1,15 @@
 import { useEffect, useState } from "react";
-import NavBar from "./components/NavBar";
-import Agency from "./components/agency/Agency";
-import LandingPage from "./components/landing/Landing";
-import Services from "./pages/Services";
-import Sidebar from "./components/SideBar";
-import Gallery from "./components/gallery/Gallery";
+import { Outlet } from "react-router-dom";
+import NavBar from "./navbar/NavBar";
+import Sidebar from "./sidebar/SideBar";
 
 const getInitialLanguage = () => {
-  const savedLanguage = localStorage.getItem("language");
-  return savedLanguage || "en";
-};
+    const savedLanguage = localStorage.getItem("language");
+    return savedLanguage || "en";
+  };
 
-function App() {
-  const [isNavBarShown, setIsNavBarShown] = useState(false);
+function NewUserLayout() {
+    const [isNavBarShown, setIsNavBarShown] = useState(false);
   const [language, setLanguage] = useState(getInitialLanguage());
 
   useEffect(() => {
@@ -34,12 +31,11 @@ function App() {
         setIsNavBarShown={setIsNavBarShown}
         language={language}
       />
-      <LandingPage />
-      <Agency />
-      <Services />
-      <Gallery />
+      <main>
+        <Outlet />
+      </main>
     </>
   );
 }
 
-export default App;
+export default NewUserLayout;
