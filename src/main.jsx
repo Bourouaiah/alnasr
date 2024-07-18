@@ -18,7 +18,7 @@ import Login from "./pages/login/Login";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
+    <Route path="/al-nasr/" element={<Layout />}>
       {/* <Route index element={<Splash />} /> */}
       <Route path="menu" element={<NewUserLayout />}>
         <Route index element={<Main />} />

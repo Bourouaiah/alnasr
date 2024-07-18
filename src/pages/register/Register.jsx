@@ -79,7 +79,7 @@ function Register() {
         <div className="flex justify-center gap-[5px] text-sm mt-[10px]">
           <p className="text-second-black">Already have an account?</p>
           <Link
-            to="/menu/login"
+            to="/al-nasr/menu/login"
             className="text-second-black underline font-semibold"
           >
             Log in
@@ -152,7 +152,7 @@ function Register() {
 
       <div className="flex flex-col mb-[20px]">
         <Link
-          to="/payper/menu/registerasadmin"
+          to="/al-nasr/menu/registerasadmin"
           className="text-[#000] font-semibold underline"
         >
           Register as admin?

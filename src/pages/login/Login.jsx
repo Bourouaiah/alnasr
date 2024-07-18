@@ -37,7 +37,7 @@ function Login() {
         <div className="flex justify-center gap-[5px] text-sm my-[20px]">
           <p className="text-second-black">New to Al-Nasr?</p>
           <Link
-            to="/menu/register"
+            to="/al-nasr/menu/register"
             className="text-[#000] underline font-semibold"
           >
             Sign up
