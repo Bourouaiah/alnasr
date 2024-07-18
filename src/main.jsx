@@ -14,6 +14,7 @@ import NewUserLayout from "./components/NewUserLayout";
 import Layout from "./components/Layout";
 import Main from "./pages/main/Main";
 import Register from "./pages/register/Register";
+import Login from "./pages/login/Login";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,8 +22,8 @@ const router = createBrowserRouter(
       {/* <Route index element={<Splash />} /> */}
       <Route path="menu" element={<NewUserLayout />}>
         <Route index element={<Main />} />
-        {/* <Route path="login" element={<Login />} /> */}
         <Route path="register" element={<Register />} />
+        <Route path="login" element={<Login />} />
         {/* <Route path="registerasadmin" element={<RegisterAdmin />} /> */}
         {/* <Route path="registerascashier" element={<RegisterCashier />} /> */}
         {/* <Route path="user-collect-data" element={<UserCollectData />} /> */}

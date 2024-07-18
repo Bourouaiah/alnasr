@@ -6,6 +6,7 @@ import arFlag from "../../assets/ar.png";
 import { useState } from "react";
 
 import { navData } from "../../../data";
+import { Link } from "react-router-dom";
 
 const flags = {
   en: enFlag,
@@ -32,13 +33,20 @@ function NavBar({ setIsNavBarShown, language, changeLanguage }) {
             key={key}
             className="hover:text-main-yellow hover:border-b cursor-pointer font-medium text-second-black"
           >
-            <a href={`#${key}`}>{texts[key]}</a>
+            <Link
+              to="/menu"
+            >
+              {texts[key]}
+            </Link>
           </li>
         ))}
       </ul>
-      <div className="hidden lg:block">
-        <button className="bg-main-yellow py-[10px] px-[20px] font-medium rounded-2xl text-second-black border border-main-yellow hover:text-main-yellow hover:bg-second-black duration-200">
-          Join now
+      <div className="hidden lg:flex gap-[20px]">
+        <button className="bg-second-yellow py-[5px] px-[20px] font-medium rounded-lg text-second-black border border-main-yellow hover:border-[#000] hover:text-main-yellow hover:bg-second-black duration-200">
+         <Link to="/menu/register">Register</Link>
+        </button>
+        <button className="bg-second-yellow py-[5px] px-[20px] font-medium rounded-lg text-second-black border border-main-yellow hover:text-[#000] hover:bg-main-yellow duration-200">
+        <Link to="/menu/login">Login</Link>
         </button>
       </div>
       <div className="relative">
@@ -55,7 +63,7 @@ function NavBar({ setIsNavBarShown, language, changeLanguage }) {
           <FaChevronDown className="ml-[2px]" />
         </button>
         {isLanguageDropdownOpen && (
-          <div className="absolute right-0 mt-2 w-40 bg-white border rounded-md shadow-lg z-10">
+          <div className="absolute right-0 mt-2 w-40 bg-[#fff] border rounded-md shadow-lg z-10">
             {Object.keys(languages).map((lang) => (
               <div
                 key={lang}

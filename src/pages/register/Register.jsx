@@ -71,16 +71,16 @@ function Register() {
   };
 
   return (
-    <section className="md:w-[70%] lg:w-[50%] md:mx-auto">
+    <section className="px-[20px] md:px-[50px] md:w-[70%] lg:w-[50%] md:mx-auto mt-[40px]">
       <div>
-        <h2 className="text-second-blue text-2xl md:text-3xl text-center font-semibold">
-          Create your Payper account
+        <h2 className="text-second-black text-2xl md:text-3xl text-center font-semibold">
+          Create your Al-Nasr account
         </h2>
         <div className="flex justify-center gap-[5px] text-sm mt-[10px]">
-          <p className="text-second-gray">Already have an account?</p>
+          <p className="text-second-black">Already have an account?</p>
           <Link
-            to="/payper/menu/login"
-            className="text-second-blue underline font-semibold"
+            to="/menu/login"
+            className="text-second-black underline font-semibold"
           >
             Log in
           </Link>
@@ -88,12 +88,12 @@ function Register() {
       </div>
       <form onSubmit={handleSubmit} ref={form} className="my-[50px]" action="">
         <div className="flex flex-col">
-          <label className="text-second-gray text-sm" htmlFor="user-email">
+          <label className="text-second-black text-sm" htmlFor="user-email">
             First, enter your email address
           </label>
           <input
             onChange={(e) => setEmail(e.target.value)}
-            className="mt-[10px] rounded-[5px] p-[8px] border-2 border-third-gray hover:border-second-gray duration-500 ease-in-out outline-main-blue"
+            className="mt-[10px] rounded-[5px] p-[8px] border-2 border-second-black hover:border-[#000] duration-500 ease-in-out outline-[#000]"
             type="email"
             name="user-email"
             id="user-email"
@@ -103,7 +103,7 @@ function Register() {
         {showSendverificationCodeButton ? (
           <button
             onClick={handleSendVerificationCode}
-            className="mt-4 w-full p-3 text-white font-semibold bg-blue-500 rounded-md hover:bg-blue-600"
+            className="mt-4 w-full p-3 text-second-black hover:text-[#000] font-semibold bg-second-yellow rounded-md hover:bg-main-yellow"
           >
             Send Verification code
           </button>
@@ -136,7 +136,7 @@ function Register() {
 
         <button
           onClick={handleRegister}
-          className="mt-6 w-full p-[10px] text-main-black text-white text-[15px] font-semibold bg-second-blue rounded-3xl hover:bg-main-blue duration-150 ease-in-out"
+          className="mt-6 w-full p-[10px] text-[#000] text-[15px] font-semibold bg-main-yellow rounded-3xl hover:bg-main-blue duration-150 ease-in-out"
           disabled={!showRegisterButton}
         >
           {loading ? (
@@ -153,25 +153,19 @@ function Register() {
       <div className="flex flex-col mb-[20px]">
         <Link
           to="/payper/menu/registerasadmin"
-          className="text-main-blue font-semibold underline"
+          className="text-[#000] font-semibold underline"
         >
           Register as admin?
         </Link>
-        <Link
-          to="/payper/menu/registerascashier"
-          className="text-main-blue font-semibold underline"
-        >
-          Register as cashier?
-        </Link>
       </div>
       <div>
-        <p className="text-sm text-second-gray text-center mt-[40px]">
+        <p className="text-sm text-second-black text-center mt-[40px]">
           By registering, you accept our{" "}
-          <Link className="text-main-black underline font-semibold">
+          <Link className="text-[#000] underline font-semibold">
             Terms of use
           </Link>{" "}
           and{" "}
-          <Link className="text-main-black underline font-semibold">
+          <Link className="text-[#000] underline font-semibold">
             Privacy Policy
           </Link>
         </p>
