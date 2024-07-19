@@ -34,7 +34,7 @@ function NavBar({ setIsNavBarShown, language, changeLanguage }) {
             className="hover:text-main-yellow hover:border-b cursor-pointer font-medium text-second-black"
           >
             <Link
-              to="/al-nasr/menu"
+              to="/alnasr/menu"
             >
               {texts[key]}
             </Link>
@@ -43,10 +43,10 @@ function NavBar({ setIsNavBarShown, language, changeLanguage }) {
       </ul>
       <div className="hidden lg:flex gap-[20px]">
         <button className="bg-second-yellow py-[5px] px-[20px] font-medium rounded-lg text-second-black border border-main-yellow hover:border-[#000] hover:text-main-yellow hover:bg-second-black duration-200">
-         <Link to="/al-nasr/menu/register">Register</Link>
+         <Link to="/alnasr/menu/register">Register</Link>
         </button>
         <button className="bg-second-yellow py-[5px] px-[20px] font-medium rounded-lg text-second-black border border-main-yellow hover:text-[#000] hover:bg-main-yellow duration-200">
-        <Link to="/al-nasr/menu/login">Login</Link>
+        <Link to="/alnasr/menu/login">Login</Link>
         </button>
       </div>
       <div className="relative">

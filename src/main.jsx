@@ -19,7 +19,7 @@ import Splash from "./pages/splash/Splash";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/al-nasr/" element={<Layout />}>
+    <Route path="/alnasr/" element={<Layout />}>
       <Route index element={<Splash />} />
       <Route path="menu" element={<NewUserLayout />}>
         <Route index element={<Main />} />

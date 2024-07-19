@@ -35,9 +35,9 @@ function Login() {
           Welcome Back
         </h2>
         <div className="flex justify-center gap-[5px] text-sm my-[20px]">
-          <p className="text-second-black">New to Al-Nasr?</p>
+          <p className="text-second-black">New to alnasr?</p>
           <Link
-            to="/al-nasr/menu/register"
+            to="/alnasr/menu/register"
             className="text-[#000] underline font-semibold"
           >
             Sign up

@@ -74,12 +74,12 @@ function Register() {
     <section className="px-[20px] md:px-[50px] md:w-[70%] lg:w-[50%] md:mx-auto mt-[40px]">
       <div>
         <h2 className="text-second-black text-2xl md:text-3xl text-center font-semibold">
-          Create your Al-Nasr account
+          Create your alnasr account
         </h2>
         <div className="flex justify-center gap-[5px] text-sm mt-[10px]">
           <p className="text-second-black">Already have an account?</p>
           <Link
-            to="/al-nasr/menu/login"
+            to="/alnasr/menu/login"
             className="text-second-black underline font-semibold"
           >
             Log in
@@ -152,7 +152,7 @@ function Register() {
 
       <div className="flex flex-col mb-[20px]">
         <Link
-          to="/al-nasr/menu/registerasadmin"
+          to="/alnasr/menu/registerasadmin"
           className="text-[#000] font-semibold underline"
         >
           Register as admin?
