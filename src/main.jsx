@@ -15,11 +15,12 @@ import Layout from "./components/Layout";
 import Main from "./pages/main/Main";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
+import Splash from "./pages/splash/Splash";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/al-nasr/" element={<Layout />}>
-      {/* <Route index element={<Splash />} /> */}
+      <Route index element={<Splash />} />
       <Route path="menu" element={<NewUserLayout />}>
         <Route index element={<Main />} />
         <Route path="register" element={<Register />} />
