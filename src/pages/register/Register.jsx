@@ -57,14 +57,13 @@ function Register() {
     }
   };
 
-  console.log(verifyCodeValue);
   const handleRegister = (e) => {
     e.preventDefault();
     if (!email) {
       toast.error("Please enter your email!");
     } else {
       setLoading(true);
-      navigate("/payper/menu/user-collect-data", {
+      navigate("/alnasr/menu/user-collect-data", {
         state: { email, role: "user" },
       });
     }
@@ -120,7 +119,7 @@ function Register() {
             />
             <button
               onClick={handleVerifyCode}
-              className="mt-4 w-full p-3 text-white font-semibold bg-blue-500 rounded-md hover:bg-blue-600"
+              className="mt-4 w-full p-3 text-second-black hover:text-[#000] font-semibold bg-second-yellow rounded-md hover:bg-main-yellow"
             >
               Verify Code
             </button>
@@ -130,7 +129,7 @@ function Register() {
           <textarea
             className="hidden"
             name="message"
-            value={`You code is ${randomNumber}`}
+            value={`Your verification code is ${randomNumber}`}
           />
         </div>
 

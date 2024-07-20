@@ -9,13 +9,13 @@ import {
 import "tailwindcss/tailwind.css";
 import "./index.css";
 
-// import Splash from "./pages/splash/Splash";
 import NewUserLayout from "./components/NewUserLayout";
 import Layout from "./components/Layout";
 import Main from "./pages/main/Main";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import Splash from "./pages/splash/Splash";
+import UserCollectData from "./pages/user-collect-data/UserCollectData";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,9 +25,9 @@ const router = createBrowserRouter(
         <Route index element={<Main />} />
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
+        <Route path="user-collect-data" element={<UserCollectData />} />
         {/* <Route path="registerasadmin" element={<RegisterAdmin />} /> */}
         {/* <Route path="registerascashier" element={<RegisterCashier />} /> */}
-        {/* <Route path="user-collect-data" element={<UserCollectData />} /> */}
       </Route>
       {/* <Route path="home" element={<LoggedInLayout />}>
         <Route index element={<Overview />} />
