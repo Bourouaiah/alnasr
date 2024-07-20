@@ -127,11 +127,11 @@ function UserCollectData() {
       <h1 className="text-center text-lg sm:text-xl lg:text-2xl my-[40px] text-second-black font-semibold">
         Enter the required data please!
       </h1>
-      <div className="flex flex-wrap lg:flex-nowrap my-[30px] md:mx-[30px] gap-[50px] border border-second-black rounded-lg overflow-hidden">
-        <div className="w-[40%]">
+      <div className="flex flex-wrap lg:flex-nowrap m-[30px] my-[30px] md:mx-[30px] gap-[50px] border border-second-black rounded-lg overflow-hidden">
+        <div className="hidden lg:block w-[40%]">
           <img src={userCollectImg} alt="" />
         </div>
-        <div className="w-[60%] py-[50px] pr-[50px]">
+        <div className="w-full lg:w-[60%] p-[20px] py-[50px] lg:pr-[50px]">
           <form
             className="grid grid-cols-1 sm:grid-cols-2 text-sm md:text-base w-full justify-center gap-[20px] lg:w-auto"
             action=""
