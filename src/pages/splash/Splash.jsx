@@ -2,22 +2,18 @@
 // import { useNavigate } from "react-router-dom";
 import { RotatingLines } from "react-loader-spinner";
 import logo from "../../assets/logo.png";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 // import { onAuthStateChanged } from "firebase/auth";
 // import { auth } from "../../firebase";
 
 function Splash() {
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
-//   useEffect(() => {
-//     onAuthStateChanged(auth, (user) => {
-//       if (user) {
-//         navigate("/payper/home", { replace: true });
-//       } else {
-//         navigate("/payper/menu", { replace: true });
-//       }
-//     });
-//   }, [navigate]);
+  useEffect(() => {
+    navigate("/alnasr/menu", { replace: true });
+  }, [navigate]);
   return (
     <section className="bg-special-one w-screen h-screen flex items-center flex-col gap-[20px] justify-center">
       <div>
