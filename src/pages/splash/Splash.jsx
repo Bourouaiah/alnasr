@@ -24,7 +24,7 @@ function Splash() {
           visible={true}
           height="20"
           width="20"
-          strokeColor="#1DA599"
+          strokeColor="#000000"
           strokeWidth="5"
           animationDuration="0.75"
           ariaLabel="rotating-lines-loading"
