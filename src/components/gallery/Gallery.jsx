@@ -6,7 +6,7 @@ import imageFive from "../../assets/image-five.png";
 
 function Gallery() {
   return (
-    <section className="px-[20px] md:px-[50px] py-[50px] bg-[#F3FFFE]">
+    <section className="px-[20px] md:px-[50px] py-[50px] bg-[#fff]">
       <h1 className="text-[30px] lg:text-[54px] text-center font-semibold">
         Gallery Footage In Saudi Arabia
       </h1>

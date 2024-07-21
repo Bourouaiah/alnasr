@@ -62,3 +62,39 @@ export const servicesData = [
         description: "Free meningitis vaccine for all customers"
     },
 ]
+
+export const contactUsData = {
+    en: {
+        mainTitle: "Let's Talk",
+        description: "Wethar you have a question about our products or services, or need assistance, our friendly customer service representatives are available to assist you.",
+        email: "Email",
+        mail: "Mail",
+        socials: "Socials",
+        name: "Name",
+        subject: "Subject",
+        message: "Message",
+        send: "Send",
+    },
+    fr: {
+        mainTitle: "Contactez-nous",
+        description: "Si vous avez une question sur nos produits ou services, ou si vous avez besoin d'aide, nos sympathiques représentants du service client sont disponibles pour vous aider.",
+        email: "E-mail",
+        mail: "Mail",
+        socials: "Réseaux sociaux",
+        name: "Nom",
+        subject: "Sujet",
+        message: "Message",
+        send: "Envoyer",
+    },
+    ar: {
+        mainTitle: "تواصل معنا",
+        description: "إذا كان لديك سؤال حول منتجاتنا أو خدماتنا، أو كنت بحاجة إلى المساعدة، فإن ممثلي خدمة العملاء الودودين لدينا متاحون لمساعدتك",
+        email: "البريد الإلكتروني",
+        mail: "المايل",
+        socials: "مواقع التواصل الإجتماعي",
+        name: "الاسم",
+        subject: "الموضوع",
+        message: "رسالتك",
+        send: "أرسل",
+    }
+}

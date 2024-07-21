@@ -1,10 +1,9 @@
+import { useContext, useState } from "react";
+import { AppContext } from "../../../AppContext";
 import { FaBars, FaChevronDown } from "react-icons/fa";
-
 import logo from "../../assets/logo.png";
 import enFlag from "../../assets/en.png";
 import arFlag from "../../assets/ar.png";
-import { useState } from "react";
-
 import { navData } from "../../../data";
 import { Link } from "react-router-dom";
 
@@ -18,10 +17,12 @@ const languages = {
   ar: "Arabic",
 };
 
-function NavBar({ setIsNavBarShown, language, changeLanguage }) {
+function NavBar() {
+  const { setIsNavBarShown, language, changeLanguage } = useContext(AppContext);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
   const texts = navData[language];
   const isArabic = language === "ar";
+
   return (
     <nav className="nav-shadow flex items-center justify-between px-[20px] md:px-[50px] py-[20px]">
       <div>
@@ -33,9 +34,7 @@ function NavBar({ setIsNavBarShown, language, changeLanguage }) {
             key={key}
             className="hover:text-main-yellow hover:border-b cursor-pointer font-medium text-second-black"
           >
-            <Link
-              to="/alnasr/menu"
-            >
+            <Link to="/alnasr/menu">
               {texts[key]}
             </Link>
           </li>
@@ -43,10 +42,10 @@ function NavBar({ setIsNavBarShown, language, changeLanguage }) {
       </ul>
       <div className="hidden lg:flex gap-[20px]">
         <button className="bg-second-yellow py-[5px] px-[20px] font-medium rounded-lg text-second-black border border-main-yellow hover:border-[#000] hover:text-main-yellow hover:bg-second-black duration-200">
-         <Link to="/alnasr/menu/register">Register</Link>
+          <Link to="/alnasr/menu/register">Register</Link>
         </button>
         <button className="bg-second-yellow py-[5px] px-[20px] font-medium rounded-lg text-second-black border border-main-yellow hover:text-[#000] hover:bg-main-yellow duration-200">
-        <Link to="/alnasr/menu/login">Login</Link>
+          <Link to="/alnasr/menu/login">Login</Link>
         </button>
       </div>
       <div className="relative">
@@ -85,7 +84,7 @@ function NavBar({ setIsNavBarShown, language, changeLanguage }) {
         )}
       </div>
       <div
-        onClick={() => setIsNavBarShown((prevVal) => !prevVal)}
+        onClick={() => setIsNavBarShown(prevVal => !prevVal)}
         className="bg-main-yellow p-[7px] rounded-full cursor-pointer block lg:hidden ml-4"
       >
         <FaBars className="text-second-black" />

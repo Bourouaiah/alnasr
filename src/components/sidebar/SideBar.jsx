@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { AppContext } from "../../../AppContext";
 import logo from "../../assets/logo.png";
 import {
   FaTimes,
@@ -7,8 +9,10 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import { sidebarData } from "../../../data";
+import { Link } from "react-router-dom";
 
-function Sidebar({ isNavBarShown, setIsNavBarShown, language }) {
+function Sidebar() {
+  const { isNavBarShown, setIsNavBarShown, language } = useContext(AppContext);
   const texts = sidebarData[language];
   const isArabic = language === "ar";
 
@@ -39,14 +43,28 @@ function Sidebar({ isNavBarShown, setIsNavBarShown, language }) {
             key={key}
             className="bg-[#000] w-full text-main-yellow text-center p-[8px] rounded-lg"
           >
-            <a href={`#${key}`} onClick={handleLinkClick}>
-              {texts[key]}
-            </a>
+            <Link to="/alnasr/menu/">{texts[key]}</Link>
           </li>
         ))}
       </ul>
+      <div className="absolute w-full bottom-[65px] left-0 flex flex-col gap-[15px] px-[20px] pb-[20px]">
+        <Link
+          className="flex-grow text-center border border-[#000] bg-main-yellow p-[10px] font-semibold rounded-2xl duration-150 ease-in-out"
+          to="/alnasr/menu/login"
+          onClick={handleLinkClick}
+        >
+          Log in
+        </Link>
+        <Link
+          className="flex-grow text-center border border-[#000] text-[#000] text-[15px] font-semibold bg-main-yellow p-[10px] rounded-2xl duration-150 ease-in-out"
+          to="/alnasr/menu/register"
+          onClick={handleLinkClick}
+        >
+          Register
+        </Link>
+      </div>
       <ul className="absolute bg-[#000] w-full py-[20px] bottom-0 left-1/2 translate-x-[-50%] flex justify-center gap-[20px] text-3xl">
-        <li className="text-gray-500  duration-200 ease-in-out cursor-pointer">
+        <li className="text-gray-500 duration-200 ease-in-out cursor-pointer">
           <FaFacebook className="text-[#fff] hover:text-main-yellow" />
         </li>
         <li className="text-gray-500 duration-200 ease-in-out cursor-pointer">

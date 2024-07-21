@@ -9,6 +9,7 @@ import {
 import "tailwindcss/tailwind.css";
 import "./index.css";
 
+import { AppProvider } from "../AppContext";
 import NewUserLayout from "./components/NewUserLayout";
 import Layout from "./components/Layout";
 import Main from "./pages/main/Main";
@@ -48,11 +49,13 @@ export const AppContext = createContext();
 
 function App() {
   return (
+      <AppProvider>
     <AppContext.Provider>
-      <RouterProvider router={router}>
-        <Layout />
-      </RouterProvider>
+        <RouterProvider router={router}>
+          <Layout />
+        </RouterProvider>
     </AppContext.Provider>
+      </AppProvider>
   );
 }
 
