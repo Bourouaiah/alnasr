@@ -24,7 +24,7 @@ export const sidebarData = {
         gallery: "Gallery",
     },
     ar: {
-        home: "الرئيسة",
+        home: "الرئيسية",
         agency: "الوكالة",
         services: "الخدمات",
         contactUs: "تواصل معنا",
