@@ -2,7 +2,7 @@ import { servicesData } from "../../../data";
 
 function Services() {
   return (
-    <section className="px-[20px] md:px-[50px] py-[50px]">
+    <section id="Services" className="px-[20px] md:px-[50px] py-[50px]">
       <h1 className="text-[30px] lg:text-[54px] text-center font-semibold">Facilities We Provide For You</h1>
       <p className="text-[15px] lg:text-[18px] text-center">
         We provide comfort for our customers, with the various facilities we

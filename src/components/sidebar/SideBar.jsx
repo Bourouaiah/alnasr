@@ -9,9 +9,10 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import { sidebarData } from "../../../data";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Sidebar() {
+  const location = useLocation();
   const { isNavBarShown, setIsNavBarShown, language } = useContext(AppContext);
   const texts = sidebarData[language];
   const isArabic = language === "ar";
@@ -26,9 +27,11 @@ function Sidebar() {
         isNavBarShown ? "left-0" : "left-[-100%]"
       } h-full fixed lg:hidden duration-500 ease-in-out z-20 bg-[#fff]`}
     >
-      <div className="flex items-center justify-between p-[20px] bottom-shadow mb-[20px]">
+      <div className="nav-shadow flex items-center justify-between p-[20px] bottom-shadow mb-[20px]">
         <div className="flex items-center">
-          <img className="w-[70px]" src={logo} alt="logo" />
+          <Link to="/alnasr/menu" onClick={handleLinkClick}>
+            <img className="w-[70px]" src={logo} alt="logo" />
+          </Link>
         </div>
         <div
           onClick={() => setIsNavBarShown(false)}
@@ -37,16 +40,18 @@ function Sidebar() {
           <FaTimes className="text-second-black" />
         </div>
       </div>
-      <ul className="flex flex-col items-center px-[10px] gap-[10px]">
-        {Object.keys(texts).map((key) => (
-          <li
-            key={key}
-            className="bg-[#000] w-full text-main-yellow text-center p-[8px] rounded-lg"
-          >
-            <Link to="/alnasr/menu/">{texts[key]}</Link>
-          </li>
-        ))}
-      </ul>
+      {(location.pathname === "/alnasr/menu" || location.pathname === "/alnasr/menu/") ? (
+        <ul className="flex flex-col items-center px-[10px] gap-[10px]">
+          {Object.keys(texts).map((key) => (
+            <li
+              key={key}
+              className="bg-[#000] w-full text-main-yellow text-center p-[8px] rounded-lg"
+            >
+              <Link to="/alnasr/menu/" onClick={handleLinkClick}>{texts[key]}</Link>
+            </li>
+          ))}
+        </ul>
+      ) : null}
       <div className="absolute w-full bottom-[65px] left-0 flex flex-col gap-[15px] px-[20px] pb-[20px]">
         <Link
           className="flex-grow text-center border border-[#000] bg-main-yellow p-[10px] font-semibold rounded-2xl duration-150 ease-in-out"

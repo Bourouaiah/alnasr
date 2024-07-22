@@ -6,9 +6,11 @@ export default {
   ],
   theme: {
     colors: {
+      'main-black': "#000000",
       'main-yellow': "#FFC265",
-      'second-yellow': "#fcd191",
-      'second-black': "#525252"
+      'second-yellow': "#FCD191",
+      'second-black': "#525252",
+      'special-blue': "#F3FFFE",
     }
   },
   plugins: [],

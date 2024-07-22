@@ -1,8 +1,9 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import toast, { Toaster } from "react-hot-toast";
 
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { MdAddPhotoAlternate } from "react-icons/md";
 
 import Select from "react-select";
 import countryList from "react-select-country-list";
@@ -13,6 +14,8 @@ import { setDoc, doc } from "firebase/firestore";
 import { auth, db } from "../../../firebase";
 import { useLocation, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+
+import { useDropzone } from "react-dropzone";
 
 import userCollectImg from "../../assets/user-collect-img.png";
 
@@ -27,6 +30,8 @@ function UserCollectData() {
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [profilePicture, setProfilePicture] = useState(null);
+  const [gender, setGender] = useState(null);
   const [userEmail, setUserEmail] = useState(email);
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -56,6 +61,11 @@ function UserCollectData() {
     console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
   }
 
+  const genderOptions = [
+    { value: "male", label: "Male" },
+    { value: "female", label: "Female" },
+  ];
+
   const options = useMemo(() => countryList().getData(), []);
 
   const changeHandler = (value) => {
@@ -64,6 +74,29 @@ function UserCollectData() {
 
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
+  };
+
+  const onDrop = useCallback((acceptedFiles) => {
+    const file = acceptedFiles[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      setProfilePicture(reader.result);
+    };
+    reader.readAsDataURL(file);
+  }, []);
+
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: "image/*",
+  });
+
+  const handleAgeChange = (e) => {
+    const value = e.target.value;
+
+    // Check if the value is a number and within the desired range
+    if ((/^\d*$/.test(value) && value <= 120) || value === '') {
+      setAge(value);
+    }
   };
 
   useEffect(() => {
@@ -75,6 +108,8 @@ function UserCollectData() {
     if (
       firstName === "" ||
       lastName === "" ||
+      profilePicture == null ||
+      gender === "" ||
       age === "" ||
       email === "" ||
       password === "" ||
@@ -100,21 +135,23 @@ function UserCollectData() {
         const userRef = doc(db, "users", userId);
         await setDoc(userRef, {
           id: userId,
+          role: "user",
           firstName,
           lastName,
+          profilePicture,
+          gender,
           age,
           email,
           phoneNumber,
           country,
           city,
           town,
-          userId,
           latitude,
-          longitude
+          longitude,
         });
         toast.success("User created successfully!", { id: loadingToastId });
 
-        navigate("/payper/home");
+        navigate("/alnasr/menu/login");
       } catch (error) {
         toast.error("Failed to create user!");
         console.error("Error updating document: ", error);
@@ -123,15 +160,15 @@ function UserCollectData() {
   };
 
   return (
-    <section>
+    <section className="pt-[90px]">
       <h1 className="text-center text-lg sm:text-xl lg:text-2xl my-[40px] text-second-black font-semibold">
         Enter the required data please!
       </h1>
       <div className="flex flex-wrap lg:flex-nowrap m-[30px] my-[30px] md:mx-[30px] gap-[50px] border border-second-black rounded-lg overflow-hidden">
-        <div className="hidden lg:block w-[40%]">
+        <div className="hidden lg:block w-[45%]">
           <img src={userCollectImg} alt="" />
         </div>
-        <div className="w-full lg:w-[60%] p-[20px] py-[50px] lg:pr-[50px]">
+        <div className="w-full lg:w-[55%] p-[20px] py-[50px] lg:pr-[50px]">
           <form
             className="grid grid-cols-1 sm:grid-cols-2 text-sm md:text-base w-full justify-center gap-[20px] lg:w-auto"
             action=""
@@ -172,6 +209,39 @@ function UserCollectData() {
                 maxLength={15}
               />
             </div>
+            <div {...getRootProps()} className="flex flex-col gap-[10px]">
+              <label
+                className="font-semibold text-second-black"
+                htmlFor="profile-picture"
+              >
+                Profile Picture
+              </label>
+              <div className="flex items-center justify-between border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md">
+                <input
+                  className="flex-1 w-full gap-[2px] cursor-pointer outline-none"
+                  type="text"
+                  name="profile-picture"
+                  id="profile-picture"
+                  placeholder="select an image please"
+                  value={profilePicture}
+                />
+                <MdAddPhotoAlternate className="text-lg text-second-black cursor-pointer" />
+              </div>
+            </div>
+            <div className="flex flex-col gap-[10px]">
+              <label
+                className="font-semibold text-second-black"
+                htmlFor="gender"
+              >
+                Gender
+              </label>
+              <Select
+                className="border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[1px] rounded-md"
+                defaultValue={gender}
+                onChange={setGender}
+                options={genderOptions}
+              />
+            </div>
             <div className="flex flex-col gap-[10px]">
               <label
                 className="font-semibold text-second-black"
@@ -186,7 +256,7 @@ function UserCollectData() {
                 name="age"
                 id="age"
                 value={age}
-                onChange={(e) => setAge(e.target.value)}
+                onChange={handleAgeChange}
                 maxLength={3}
               />
             </div>
@@ -324,6 +394,7 @@ function UserCollectData() {
                 type="text"
                 name="latitude"
                 id="latitude"
+                placeholder="Click on get my location button"
                 value={latitude}
                 disabled
               />
@@ -340,6 +411,7 @@ function UserCollectData() {
                 type="text"
                 name="longitude"
                 id="longitude"
+                placeholder="Click on get my location button"
                 value={longitude}
                 disabled
               />

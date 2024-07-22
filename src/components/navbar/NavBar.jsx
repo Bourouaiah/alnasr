@@ -5,7 +5,7 @@ import logo from "../../assets/logo.png";
 import enFlag from "../../assets/en.png";
 import arFlag from "../../assets/ar.png";
 import { navData } from "../../../data";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const flags = {
   en: enFlag,
@@ -18,28 +18,33 @@ const languages = {
 };
 
 function NavBar() {
+  const location = useLocation();
+
+  console.log(location.pathname);
   const { setIsNavBarShown, language, changeLanguage } = useContext(AppContext);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
   const texts = navData[language];
   const isArabic = language === "ar";
 
   return (
-    <nav className="nav-shadow flex items-center justify-between px-[20px] md:px-[50px] py-[20px]">
+    <nav className="nav-shadow fixed top-0 w-full z-10 bg-[#fff] flex items-center justify-between px-[20px] md:px-[50px] py-[20px]">
       <div>
-        <img className="w-[90px]" src={logo} alt="logo" />
+        <Link to="/alnasr/menu">
+          <img className="w-[90px]" src={logo} alt="logo" />
+        </Link>
       </div>
-      <ul className="hidden lg:flex items-center gap-[25px]">
-        {Object.keys(texts).map((key) => (
-          <li
-            key={key}
-            className="hover:text-main-yellow hover:border-b cursor-pointer font-medium text-second-black"
-          >
-            <Link to="/alnasr/menu">
-              {texts[key]}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {(location.pathname === "/alnasr/menu" || location.pathname === "/alnasr/menu/") ? (
+        <ul className="hidden lg:flex items-center gap-[25px]">
+          {Object.keys(texts).map((key) => (
+            <li
+              key={key}
+              className="hover:text-main-yellow hover:border-b cursor-pointer font-medium text-second-black"
+            >
+              <a href={`#${texts[key]}`}>{texts[key]}</a>
+            </li>
+          ))}
+        </ul>
+      ) : null}
       <div className="hidden lg:flex gap-[20px]">
         <button className="bg-second-yellow py-[5px] px-[20px] font-medium rounded-lg text-second-black border border-main-yellow hover:border-[#000] hover:text-main-yellow hover:bg-second-black duration-200">
           <Link to="/alnasr/menu/register">Register</Link>
@@ -84,7 +89,7 @@ function NavBar() {
         )}
       </div>
       <div
-        onClick={() => setIsNavBarShown(prevVal => !prevVal)}
+        onClick={() => setIsNavBarShown((prevVal) => !prevVal)}
         className="bg-main-yellow p-[7px] rounded-full cursor-pointer block lg:hidden ml-4"
       >
         <FaBars className="text-second-black" />

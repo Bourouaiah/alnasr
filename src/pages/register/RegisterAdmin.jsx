@@ -7,7 +7,7 @@ function generateRandomNumber() {
   return Math.floor(100000 + Math.random() * 900000);
 }
 
-function Register() {
+function RegisterAdmin() {
   const navigate = useNavigate();
   const form = useRef();
   const [randomNumber, setRandomNumber] = useState(generateRandomNumber());
@@ -151,10 +151,10 @@ function Register() {
 
       <div className="flex flex-col mb-[20px]">
         <Link
-          to="/alnasr/menu/registerasadmin"
+          to="/alnasr/menu/register"
           className="text-[#000] font-semibold underline"
         >
-          Register as admin?
+          Register as user?
         </Link>
       </div>
       <div>
@@ -174,4 +174,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default RegisterAdmin;

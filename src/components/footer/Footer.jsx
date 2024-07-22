@@ -3,25 +3,20 @@ import logo from '../../assets/logo.png'
 function Footer() {
   return (
     <footer
-   className="relative z-10 bg-[#F3FFFE] dark:bg-dark pt-20 pb-10 lg:pt-[120px] lg:pb-20 p-[30px]"
+   className="relative z-10 bg-[#F3FFFE] dark:bg-dark pt-20 pb-10 lg:pt-[120px] lg:pb-20 p-[30px] mt-[50px]"
    >
    <div className="container mx-auto">
       <div className="flex flex-wrap -mx-4">
          <div className="w-full px-4 sm:w-2/3 lg:w-3/12">
             <div className="w-full mb-10">
                <a
-                  href="javascript:void(0)"
+                  href="#Home"
                   className="mb-6 inline-block max-w-[160px]"
                   >
                <img
                   src={logo}
                   alt="logo"
                   className="max-w-full"
-                  />
-               <img
-                  src="https://cdn.tailgrids.com/2.0/image/assets/images/logo/logo-white.svg"
-                  alt="logo"
-                  className="max-w-full hidden dark:block"
                   />
                </a>
                <p className="text-base text-body-color dark:text-dark-6 mb-7">

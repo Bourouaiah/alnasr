@@ -54,7 +54,7 @@ function ContactUs() {
 
   return (
     <section
-      id="contact"
+      id="Contact Us"
       className="px-[10px] md:px-[50px] py-[100px] bg-[#F3FFFE]"
     >
       <div className="my-6">

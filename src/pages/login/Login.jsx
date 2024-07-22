@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-// import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
-// import { auth } from "../../firebase";
+import { auth } from "../../../firebase";
 
 import toast, { Toaster } from "react-hot-toast";
 
 function Login() {
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,19 +17,19 @@ function Login() {
     setShowPassword(!showPassword);
   };
 
-//   const loginInWithUser = (e) => {
-//     e.preventDefault();
-//     signInWithEmailAndPassword(auth, email, password)
-//       .then(() => {
-//         navigate("/payper/home");
-//       })
-//       .catch((err) => {
-//         toast.error(err.message);
-//       });
-//   };
+  const loginInWithUser = (e) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        navigate("/alnasr/home");
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  };
 
   return (
-    <section className="px-[20px] md:px-[50px] md:w-[70%] lg:w-[50%] md:mx-auto mt-[40px]">
+    <section className="px-[20px] md:px-[50px] md:w-[70%] lg:w-[50%] md:mx-auto pt-[120px]">
       <div>
         <h2 className="text-second-black text-2xl md:text-3xl text-center font-semibold">
           Welcome Back
@@ -80,7 +80,7 @@ function Login() {
           </div>
         </div>
         <button
-        //   onClick={loginInWithUser}
+          onClick={loginInWithUser}
           className="w-full p-[10px] text-second-black hover:text-[#000] text-[15px] font-semibold bg-second-yellow rounded-3xl hover:bg-main-yellow duration-150 ease-in-out"
         >
           Login

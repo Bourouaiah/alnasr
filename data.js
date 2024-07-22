@@ -1,14 +1,16 @@
 export const navData = {
     en: {
         home: "Home",
-        aboutUs: "About Us",
+        agency: "Agency",
         services: "Services",
+        contactUs: "Contact Us",
         gallery: "Gallery",
     },
     ar: {
-        home: "الرئيسية",
-        aboutUs: "عنّا",
-        services: "خدماتنا",
+        home: "الرئيسة",
+        agency: "الوكالة",
+        services: "الخدمات",
+        contactUs: "تواصل معنا",
         gallery: "الصور",
     },
 };
@@ -16,14 +18,16 @@ export const navData = {
 export const sidebarData = {
     en: {
         home: "Home",
-        aboutUs: "About Us",
+        agency: "Agency",
         services: "Services",
+        contactUs: "Contact Us",
         gallery: "Gallery",
     },
     ar: {
-        home: "الرئيسية",
-        aboutUs: "عنّا",
-        services: "خدماتنا",
+        home: "الرئيسة",
+        agency: "الوكالة",
+        services: "الخدمات",
+        contactUs: "تواصل معنا",
         gallery: "الصور",
     },
 };
