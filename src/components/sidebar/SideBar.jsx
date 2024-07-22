@@ -44,11 +44,11 @@ function Sidebar() {
         <ul className="flex flex-col items-center px-[10px] gap-[10px]">
           {Object.keys(texts).map((key) => (
             <li
-              key={key}
-              className="bg-[#000] w-full text-main-yellow text-center p-[8px] rounded-lg"
-            >
-              <Link to="/alnasr/menu/" onClick={handleLinkClick}>{texts[key]}</Link>
-            </li>
+            key={key}
+            className="hover:text-main-yellow hover:border-b cursor-pointer font-medium text-second-black"
+          >
+            <a href={`#${texts[key]}`}>{texts[key]}</a>
+          </li>
           ))}
         </ul>
       ) : null}
