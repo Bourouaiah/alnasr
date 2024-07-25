@@ -54,52 +54,33 @@ function MainSidebar() {
             <p className="hidden lg:block">Overview</p>
           </NavLink>
         </li>
-        {userDoc?.role !== "admin" && (
-          <li className="hover:bg-special-blue font-semibold text-second-black hover:text-main-black text-lg rounded-lg">
-            <NavLink
-              to="/alnasr/home/transactions"
-              className="flex items-center gap-[8px] px-[10px] py-[8px] rounded-lg"
-              style={
-                location.pathname === "/alnasr/home/transactions" ||
-                location.pathname === "/alnasr/home/transactions/income" ||
-                location.pathname === "/alnasr/home/transactions/expense"
-                  ? activeStyles
-                  : null
-              }
-            >
-              <FaMoneyBill />
-              <p className="hidden lg:block">Transactions</p>
-            </NavLink>
-          </li>
-        )}
-        {userDoc?.role !== "admin" && (
-          <li className="hover:bg-special-blue font-semibold text-second-black hover:text-main-black text-lg rounded-lg">
-            <NavLink
-              to="/alnasr/home/send-money"
-              className="flex items-center gap-[8px] px-[10px] py-[8px] rounded-lg"
-              style={
-                location.pathname === "/alnasr/home/send-money"
-                  ? activeStyles
-                  : null
-              }
-            >
-              <FaPaperPlane />
-              <p className="hidden lg:block">Send Money</p>
-            </NavLink>
-          </li>
-        )}
         <li className="hover:bg-special-blue font-semibold text-second-black hover:text-main-black text-lg rounded-lg">
           <NavLink
-            to="/alnasr/home/accounts"
+            to="/alnasr/home/services"
             className="flex items-center gap-[8px] px-[10px] py-[8px] rounded-lg"
             style={
-              location.pathname === "/alnasr/home/accounts"
+              location.pathname === "/alnasr/home/services" ||
+              location.pathname === "/alnasr/home/services/accommodation"
+                ? activeStyles
+                : null
+            }
+          >
+            <FaMoneyBill />
+            <p className="hidden lg:block">Services</p>
+          </NavLink>
+        </li>
+        <li className="hover:bg-special-blue font-semibold text-second-black hover:text-main-black text-lg rounded-lg">
+          <NavLink
+            to="/alnasr/home/users"
+            className="flex items-center gap-[8px] px-[10px] py-[8px] rounded-lg"
+            style={
+              location.pathname === "/alnasr/home/users"
                 ? activeStyles
                 : null
             }
           >
             <FaUserAlt />
-            <p className="hidden lg:block">Accounts</p>
+            <p className="hidden lg:block">Users</p>
           </NavLink>
         </li>
         <li className="hover:bg-special-blue font-semibold text-second-black hover:text-main-black text-lg rounded-lg">

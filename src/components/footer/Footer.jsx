@@ -26,7 +26,7 @@ function Footer() {
                <p
                   className="flex items-center text-sm font-medium text-dark dark:text-white"
                   >
-                  <span className="mr-3 text-primary">
+                  <span className="mr-3 text-main-black">
                      <svg
                         width="20"
                         height="20"
@@ -55,13 +55,13 @@ function Footer() {
                         </defs>
                      </svg>
                   </span>
-                  <span>+012 (345) 678 99</span>
+                  <span className='text-main-black'>+012 (345) 678 99</span>
                </p>
             </div>
          </div>
          <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
             <div className="w-full mb-10">
-               <h4 className="text-lg font-semibold text-dark dark:text-white mb-9">
+               <h4 className="text-lg font-semibold text-dark text-main-black mb-9">
                   Resources
                </h4>
                <ul className="space-y-3">
@@ -102,7 +102,7 @@ function Footer() {
          </div>
          <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
             <div className="w-full mb-10">
-               <h4 className="text-lg font-semibold text-dark dark:text-white mb-9">
+               <h4 className="text-lg font-semibold text-dark text-main-black mb-9">
                   Company
                </h4>
                <ul className="space-y-3">
@@ -143,7 +143,7 @@ function Footer() {
          </div>
          <div className="w-full px-4 sm:w-1/2 lg:w-2/12">
             <div className="w-full mb-10">
-               <h4 className="text-lg font-semibold text-dark dark:text-white mb-9">
+               <h4 className="text-lg font-semibold text-dark text-main-black mb-9">
                   Quick Links
                </h4>
                <ul className="space-y-3">
@@ -184,7 +184,7 @@ function Footer() {
          </div>
          <div className="w-full px-4 sm:w-1/2 lg:w-3/12">
             <div className="w-full mb-10">
-               <h4 className="text-lg font-semibold text-dark dark:text-white mb-9">
+               <h4 className="text-lg font-semibold text-dark text-main-black mb-9">
                   Follow Us On
                </h4>
                <div className="flex items-center mb-6">

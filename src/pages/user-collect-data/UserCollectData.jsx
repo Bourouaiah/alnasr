@@ -85,7 +85,7 @@ function UserCollectData() {
     reader.readAsDataURL(file);
   }, []);
 
-  const { getRootProps, getInputProps } = useDropzone({
+  const { getRootProps } = useDropzone({
     onDrop,
     accept: "image/*",
   });

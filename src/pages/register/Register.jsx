@@ -96,6 +96,7 @@ function Register() {
             type="email"
             name="user-email"
             id="user-email"
+            placeholder="Your email"
             disabled={showRegisterButton}
           />
         </div>

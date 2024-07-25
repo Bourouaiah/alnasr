@@ -53,6 +53,7 @@ function Login() {
             className="rounded-[5px] p-[8px] border-2 border-third-black hover:border-second-black duration-500 ease-in-out outline-[#000]"
             type="email"
             name="user-email"
+            placeholder="Your email"
             id=""
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -68,6 +69,7 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
               type={`${showPassword ? "text" : "password"}`}
               name="user-password"
+              placeholder="Your password"
               id=""
               value={password}
             />
