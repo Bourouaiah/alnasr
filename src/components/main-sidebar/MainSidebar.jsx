@@ -6,8 +6,9 @@ import {
   FaMoneyBill,
   FaCog,
   FaUserAlt,
-  FaPaperPlane,
 } from "react-icons/fa";
+import { MdMiscellaneousServices } from "react-icons/md";
+
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../../firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -60,12 +61,18 @@ function MainSidebar() {
             className="flex items-center gap-[8px] px-[10px] py-[8px] rounded-lg"
             style={
               location.pathname === "/alnasr/home/services" ||
-              location.pathname === "/alnasr/home/services/accommodation"
+              location.pathname === "/alnasr/home/services/accommodation" ||
+              location.pathname === "/alnasr/home/services/health" ||
+              location.pathname === "/alnasr/home/services/security" ||
+              location.pathname === "/alnasr/home/services/facilities" ||
+              location.pathname === "/alnasr/home/services/communication" ||
+              location.pathname === "/alnasr/home/services/education" ||
+              location.pathname === "/alnasr/home/services/food"
                 ? activeStyles
                 : null
             }
           >
-            <FaMoneyBill />
+            <MdMiscellaneousServices />
             <p className="hidden lg:block">Services</p>
           </NavLink>
         </li>
