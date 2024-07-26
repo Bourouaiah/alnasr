@@ -80,7 +80,7 @@ function Overview() {
           allCommunications.forEach((doc) => {
             appCommunications.push(doc.data());
           });
-          setFacilities(appCommunications);
+          setCommunications(appCommunications);
 
           const appEducations = [];
           const allEducations = await getDocs(collection(db, "educations"));
@@ -124,14 +124,14 @@ function Overview() {
     <section className="ml-[100px] lg:ml-[20%] p-[15px] md:p-[30px] min-h-[85vh]">
       <div>
         <h1 className="text-main-black text-lg md:text-2xl">Last users</h1>
-        <div className="mt-[20px] overflow-x-auto pb-[10px] text-sm md:text-base bg-[#f3f4f6] rounded-lg p-[20px]">
+        <div className="flex flex-col mt-[20px] overflow-x-auto pb-[10px] text-sm md:text-base bg-[#f3f4f6] rounded-lg p-[20px]">
           {lastTenUsers?.length > 0 ? (
             lastTenUsers?.map((user) => (
               <div
-                className="items-center justify-start gap-[35px] flex"
+                className="items-center justify-start gap-[35px] flex border-b-2 py-[10px]"
                 key={user.email}
               >
-                <img className="w-[30px]" src={user.profilePicture} />
+                <img className="rounded-full w-[30px] h-[30px] object-cover" src={user.profilePicture} />
                 <div className="flex items-center gap-[5px]">
                   <h2 className="font-semibold">{user.firstName}</h2>
                   <h2 className="font-semibold">{user.lastName}</h2>
@@ -155,11 +155,11 @@ function Overview() {
       <div className="mt-[40px]">
         <h1 className="text-main-black text-lg md:text-2xl mb-[40px]">Last services</h1>
         <h2 className="text-base md:text-lg">Transports</h2>
-        <div className="mt-[20px] overflow-x-auto pb-[10px] text-sm md:text-base bg-[#f3f4f6] rounded-lg p-[20px]">
+        <div className="flex flex-col mt-[20px] overflow-x-auto pb-[10px] text-sm md:text-base bg-[#f3f4f6] rounded-lg p-[20px]">
           {lastTwoTransports?.length > 0 ? (
             lastTwoTransports?.map((item, index) => (
               <div
-                className="items-center justify-start gap-[35px] flex"
+                className="items-center justify-start gap-[35px] flex py-[10px]"
                 key={index}
               >
                 <h2 className="border-2 p-[3px] w-[20px] h-[20px] flex items-center justify-center rounded-full font-semibold">
@@ -319,7 +319,7 @@ function Overview() {
               </div>
             ))
           ) : (
-            <p>No Accommodations found</p>
+            <p>No Food services found</p>
           )}
         </div>
       </div>
