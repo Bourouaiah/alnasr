@@ -1,22 +1,68 @@
+import { useState } from "react";
 import useFetchUsers from "../../../custom-hooks/useFetchUsers";
 
 function Users() {
   const { users, fetchUsers, loading, userDoc } = useFetchUsers();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState("");
 
-  const filteredUsers = users.filter((user) => user.role !== "admin");
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleCountryChange = (e) => {
+    setSelectedCountry(e.target.value);
+  };
+
+  const filteredUsers = users.filter((user) => {
+    const isNotAdmin = user.role !== "admin";
+    const matchesSearchTerm = `${user.firstName} ${user.lastName}`
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const matchesCountry = selectedCountry
+      ? user.country?.label === selectedCountry
+      : true;
+
+    return isNotAdmin && matchesSearchTerm && matchesCountry;
+  });
 
   return (
     <section className="ml-[100px] lg:ml-[20%] p-[15px] md:p-[30px] min-h-[85vh]">
-      {userDoc?.role == "user" && (
+      {userDoc?.role === "user" && (
         <h1 className="text-lg md:text-xl font-semibold mb-[20px]">
           Nearby users
         </h1>
       )}
+
+      <div className="mb-[20px] flex flex-col md:flex-row gap-[10px]">
+        <input
+          type="text"
+          placeholder="Search by name"
+          value={searchTerm}
+          onChange={handleSearchChange}
+          className="px-4 py-2 border border-gray-300 rounded-md"
+        />
+        <select
+          value={selectedCountry}
+          onChange={handleCountryChange}
+          className="px-4 py-2 border border-gray-300 rounded-md"
+        >
+          <option value="">All Countries</option>
+          {[...new Set(users.map((user) => user.country?.label))].map(
+            (country, index) => (
+              <option key={index} value={country}>
+                {country}
+              </option>
+            )
+          )}
+        </select>
+      </div>
+
       <>
         {userDoc?.role === "admin" ? (
           <div className="overflow-x-auto bg-[#f3f4f6] rounded-lg py-[10px] px-[20px] flex flex-col gap-[20px]">
             <div className="mt-[20px] text-sm md:text-base">
-              {filteredUsers?.length > 0 ? (
+              {filteredUsers.length > 0 ? (
                 <table className="w-full">
                   <thead>
                     <tr className="text-left">
@@ -31,7 +77,7 @@ function Users() {
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredUsers?.map((user, index) => (
+                    {filteredUsers.map((user, index) => (
                       <tr key={index} className="py-[10px] border-b">
                         <td className="flex items-center justify-center rounded-full font-semibold">
                           {index + 1}
@@ -65,7 +111,7 @@ function Users() {
         ) : (
           <div className="overflow-x-auto bg-[#f3f4f6] rounded-lg pb-[10px] px-[20px]">
             <div className="mt-[20px] text-sm md:text-base flex flex-col">
-              {filteredUsers?.length > 0 ? (
+              {filteredUsers.length > 0 ? (
                 <table className="w-full">
                   <thead>
                     <tr className="text-left">
@@ -81,7 +127,7 @@ function Users() {
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredUsers?.map((user, index) => (
+                    {filteredUsers.map((user, index) => (
                       <tr key={index} className="py-[10px] border-b">
                         <td className="flex items-center justify-center rounded-full font-semibold">
                           {index + 1}

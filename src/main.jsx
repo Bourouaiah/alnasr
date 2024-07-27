@@ -32,6 +32,7 @@ import ServicesCommunication from "./components/services-communication/ServicesC
 import ServicesEducation from "./components/services-education/ServicesEducation";
 import ServicesFood from "./components/services-food/ServicesFood";
 import Users from "./pages/users/Users";
+import Settings from "./pages/settings/Settings";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -57,6 +58,7 @@ const router = createBrowserRouter(
           <Route path="food" element={<ServicesFood />} />
         </Route>
         <Route path="users" element={<Users />} />
+        <Route path="settings" element={<Settings />} />
       </Route>
     </Route>
   )
