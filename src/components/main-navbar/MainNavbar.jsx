@@ -1,32 +1,17 @@
-import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { IoLogOut, IoNotifications } from "react-icons/io5";
-import { auth, db } from "../../../firebase";
+import { auth } from "../../../firebase";
 import toast from "react-hot-toast";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { signOut } from "firebase/auth";
+import useFetchUsers from "../../../custom-hooks/useFetchUsers";
+
 
 function MainNavbar() {
   const navigate = useNavigate();
-  const [userDoc, setUserDoc] = useState(null);
-  useEffect(() => {
-    const fetchData = async () => {
-      onAuthStateChanged(auth, async (user) => {
-        if (user) {
-          const usersQuery = query(
-            collection(db, "users"),
-            where("email", "==", user.email)
-          );
-          const querySnapshot = await getDocs(usersQuery);
-          querySnapshot.forEach((doc) => {
-            setUserDoc(doc.data());
-          });
-        }
-      });
-    };
-    fetchData();
-  }, [userDoc]);
+
+  const { userDoc } = useFetchUsers();
+
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {

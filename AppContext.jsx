@@ -1,9 +1,7 @@
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
-// Create the context
 export const AppContext = createContext();
 
-// Create the provider component
 export const AppProvider = ({ children }) => {
   const [isNavBarShown, setIsNavBarShown] = useState(false);
   const [language, setLanguage] = useState(getInitialLanguage());
@@ -30,7 +28,6 @@ export const AppProvider = ({ children }) => {
   );
 };
 
-// Helper function to get initial language
 function getInitialLanguage() {
-  return localStorage.getItem('language') || 'en'; // Default language is 'en'
+  return localStorage.getItem('language') || 'en';
 }
