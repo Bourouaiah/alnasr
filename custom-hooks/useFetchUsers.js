@@ -7,6 +7,7 @@ import { useUserContext } from '../UserContext';
 const useFetchUsers = () => {
   const { users, setUsers, userDoc, setUserDoc, loading, setLoading } = useUserContext();
   const [lastDoc, setLastDoc] = useState(null);
+  const [currentPage, setCurrentPage] = useState(2);
   const usersPerPage = 50;
 
   useEffect(() => {
@@ -29,14 +30,23 @@ const useFetchUsers = () => {
     fetchData();
   }, [setLoading, setUserDoc]);
 
-  const fetchUsers = async (reset = false) => {
+  const fetchUsers = async (reset = false, direction = 'next') => {
     setLoading(true);
     try {
-      const usersQuery = query(
-        collection(db, "users"),
-        ...(lastDoc && !reset ? [startAfter(lastDoc)] : []),
-        limit(usersPerPage)
-      );
+      let usersQuery;
+
+      if (direction === 'next') {
+        usersQuery = query(
+          collection(db, "users"),
+          ...(lastDoc && !reset ? [startAfter(lastDoc)] : []),
+          limit(usersPerPage)
+        );
+      } else if (direction === 'prev' && currentPage > 1) {
+        usersQuery = query(
+          collection(db, "users"),
+          limit(usersPerPage)
+        );
+      }
 
       const snapshot = await getDocs(usersQuery);
       const newUsers = snapshot.docs.map((doc) => doc.data());
@@ -51,8 +61,14 @@ const useFetchUsers = () => {
         newUsers.sort((a, b) => a.distance - b.distance);
       }
 
-      setUsers(reset ? newUsers : [...users, ...newUsers]);
-      setLastDoc(snapshot.docs[snapshot.docs.length - 1]);
+      setUsers(reset ? newUsers : newUsers);
+
+      if (direction === 'next') {
+        setLastDoc(snapshot.docs[snapshot.docs.length - 1]);
+        setCurrentPage((prevPage) => prevPage + 1);
+      } else if (direction === 'prev' && currentPage > 1) {
+        setCurrentPage((prevPage) => prevPage - 1);
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -60,9 +76,11 @@ const useFetchUsers = () => {
     }
   };
 
+
+
   useEffect(() => {
     fetchUsers(true);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return { users, userDoc, fetchUsers, loading };

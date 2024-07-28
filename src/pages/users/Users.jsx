@@ -2,10 +2,12 @@ import { useState } from "react";
 import useFetchUsers from "../../../custom-hooks/useFetchUsers";
 
 function Users() {
-  const { users, fetchUsers, loading, userDoc } = useFetchUsers();
+  const { users, fetchUsers, userDoc, currentPage } = useFetchUsers();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCountry, setSelectedCountry] = useState("");
   const [distanceRange, setDistanceRange] = useState(20037);
+
+  console.log(users.length);
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -77,7 +79,9 @@ function Users() {
           onChange={handleDistanceRangeChange}
           className="w-full"
         />
-        <span className="block text-center text-sm mt-2">{distanceRange} KM</span>
+        <span className="block text-center text-sm mt-2">
+          {distanceRange} KM
+        </span>
       </div>
 
       <>
@@ -190,15 +194,14 @@ function Users() {
 
       <div className="flex justify-between mt-[50px] bg-yellow-500 rounded-lg">
         <button
-          onClick={() => fetchUsers(false)}
-          disabled={loading}
+          onClick={() => fetchUsers(false, "prev")}
+          disabled={currentPage === 1}
           className="px-4 py-2 bg-second-black text-white rounded-md hover:bg-gray-800 disabled:opacity-50"
         >
           Previous
         </button>
         <button
-          onClick={() => fetchUsers(false)}
-          disabled={loading}
+          onClick={() => fetchUsers(false, "next")}
           className="px-4 py-2 bg-second-black text-white rounded-md hover:bg-gray-800 disabled:opacity-50"
         >
           Next
