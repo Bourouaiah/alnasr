@@ -5,6 +5,7 @@ function Users() {
   const { users, fetchUsers, loading, userDoc } = useFetchUsers();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCountry, setSelectedCountry] = useState("");
+  const [distanceRange, setDistanceRange] = useState(20037);
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -12,6 +13,10 @@ function Users() {
 
   const handleCountryChange = (e) => {
     setSelectedCountry(e.target.value);
+  };
+
+  const handleDistanceRangeChange = (e) => {
+    setDistanceRange(e.target.value);
   };
 
   const filteredUsers = users.filter((user) => {
@@ -22,8 +27,10 @@ function Users() {
     const matchesCountry = selectedCountry
       ? user.country?.label === selectedCountry
       : true;
+    const matchesDistance =
+      user.distance !== undefined ? user.distance <= distanceRange : true;
 
-    return isNotAdmin && matchesSearchTerm && matchesCountry;
+    return isNotAdmin && matchesSearchTerm && matchesCountry && matchesDistance;
   });
 
   return (
@@ -40,12 +47,12 @@ function Users() {
           placeholder="Search by name"
           value={searchTerm}
           onChange={handleSearchChange}
-          className="px-4 py-2 border border-gray-300 rounded-md"
+          className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <select
           value={selectedCountry}
           onChange={handleCountryChange}
-          className="px-4 py-2 border border-gray-300 rounded-md"
+          className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           <option value="">All Countries</option>
           {[...new Set(users.map((user) => user.country?.label))].map(
@@ -58,6 +65,21 @@ function Users() {
         </select>
       </div>
 
+      <div className="mb-[20px]">
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Filter by Distance (KM):
+        </label>
+        <input
+          type="range"
+          min="0"
+          max="20037"
+          value={distanceRange}
+          onChange={handleDistanceRangeChange}
+          className="w-full"
+        />
+        <span className="block text-center text-sm mt-2">{distanceRange} KM</span>
+      </div>
+
       <>
         {userDoc?.role === "admin" ? (
           <div className="overflow-x-auto bg-[#f3f4f6] rounded-lg py-[10px] px-[20px] flex flex-col gap-[20px]">
@@ -66,14 +88,14 @@ function Users() {
                 <table className="w-full">
                   <thead>
                     <tr className="text-left">
-                      <th className="mx-[10px]">#</th>
-                      <th className="mx-[10px]">ProfilePic</th>
-                      <th className="mx-[10px]">Name</th>
-                      <th className="mx-[10px]">Email</th>
-                      <th className="mx-[10px]">Phone Number</th>
-                      <th className="mx-[10px]">Country</th>
-                      <th className="mx-[10px]">Age</th>
-                      <th className="mx-[10px]">Gender</th>
+                      <th className="px-4 py-2">#</th>
+                      <th className="px-4 py-2">ProfilePic</th>
+                      <th className="px-4 py-2">Name</th>
+                      <th className="px-4 py-2">Email</th>
+                      <th className="px-4 py-2">Phone Number</th>
+                      <th className="px-4 py-2">Country</th>
+                      <th className="px-4 py-2">Age</th>
+                      <th className="px-4 py-2">Gender</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -115,15 +137,15 @@ function Users() {
                 <table className="w-full">
                   <thead>
                     <tr className="text-left">
-                      <th className="mx-[10px]">#</th>
-                      <th className="mx-[10px]">ProfilePic</th>
-                      <th className="mx-[10px]">Name</th>
-                      <th className="mx-[10px]">Email</th>
-                      <th className="mx-[10px]">Phone Number</th>
-                      <th className="mx-[10px]">Country</th>
-                      <th className="mx-[10px]">Age</th>
-                      <th className="mx-[10px]">Gender</th>
-                      <th className="mx-[10px]">Away by KM</th>
+                      <th className="px-4 py-2">#</th>
+                      <th className="px-4 py-2">ProfilePic</th>
+                      <th className="px-4 py-2">Name</th>
+                      <th className="px-4 py-2">Email</th>
+                      <th className="px-4 py-2">Phone Number</th>
+                      <th className="px-4 py-2">Country</th>
+                      <th className="px-4 py-2">Age</th>
+                      <th className="px-4 py-2">Gender</th>
+                      <th className="px-4 py-2">Away by KM</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -166,18 +188,18 @@ function Users() {
         )}
       </>
 
-      <div className="flex justify-between mt-[50px] bg-main-yellow">
+      <div className="flex justify-between mt-[50px] bg-yellow-500 rounded-lg">
         <button
           onClick={() => fetchUsers(false)}
           disabled={loading}
-          className="px-4 py-2 bg-second-black text-white"
+          className="px-4 py-2 bg-second-black text-white rounded-md hover:bg-gray-800 disabled:opacity-50"
         >
           Previous
         </button>
         <button
           onClick={() => fetchUsers(false)}
           disabled={loading}
-          className="px-4 py-2 bg-second-black text-white"
+          className="px-4 py-2 bg-second-black text-white rounded-md hover:bg-gray-800 disabled:opacity-50"
         >
           Next
         </button>
