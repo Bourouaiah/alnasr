@@ -1,6 +1,6 @@
 import toast, { Toaster } from "react-hot-toast";
 import useFetchUsers from "../../../custom-hooks/useFetchUsers";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useContext, useMemo, useState } from "react";
 import countryList from "react-select-country-list";
 import { useDropzone } from "react-dropzone";
 
@@ -8,12 +8,14 @@ import Select from "react-select";
 
 import PhoneInput from "react-phone-number-input";
 
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { MdAddPhotoAlternate } from "react-icons/md";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebase";
+import { AppContext } from "../../../AppContext";
 
 function Settings() {
+  const { language } = useContext(AppContext);
+  const isArabic = language === "ar";
   const { userDoc } = useFetchUsers();
   const [firstName, setFirstName] = useState(userDoc?.firstName || "");
   const [lastName, setLastName] = useState(userDoc?.lastName || "");
@@ -125,7 +127,7 @@ function Settings() {
   };
 
   return (
-    <section className="ml-[100px] lg:ml-[20%] p-[15px] md:p-[30px] min-h-[85vh] text-sm md:text-base">
+    <section className={`${isArabic ? "arabic-font mr-[100px] lg:mr-[20%]" : "ml-[100px] lg:ml-[20%]"}  p-[15px] md:p-[30px] min-h-[85vh] text-sm md:text-base`}>
       {userDoc?.role == "user" ? (
         <>
           <form

@@ -8,8 +8,12 @@ import useFetchFacilities from "../../../custom-hooks/useFetchFacilities";
 import useFetchCommunications from "../../../custom-hooks/useFetchCommunications";
 import useFetchEducations from "../../../custom-hooks/useFetchEducations";
 import useFetchFood from "../../../custom-hooks/useFetchFood";
+import { useContext } from "react";
+import { AppContext } from "../../../AppContext";
 
 function ServicesPage() {
+  const { language } = useContext(AppContext);
+  const isArabic = language === "ar";
   const { userDoc } = useFetchUsers();
   const { transports } = useFetchTransports();
   const { accommodations } = useFetchAccommodations();
@@ -27,7 +31,13 @@ function ServicesPage() {
   };
 
   return (
-    <section className="ml-[100px] lg:ml-[20%] p-[15px] md:p-[30px] min-h-[85vh]">
+    <section
+      className={`${
+        isArabic
+          ? "arabic-font mr-[100px] lg:mr-[20%]"
+          : "ml-[100px] lg:ml-[20%]"
+      }  p-[15px] md:p-[30px] min-h-[85vh]`}
+    >
       {userDoc?.role === "admin" ? (
         <>
           <ul className="flex items-center gap-[20px] mb-[20px] text-xs sm:text-base overflow-x-auto overflow-y-hidden pb-[10px]">
@@ -150,7 +160,13 @@ function ServicesPage() {
         </>
       ) : (
         <div>
-          <h2 className="text-base md:text-lg font-semibold">Transports</h2>
+          <h2
+            className={`${
+              isArabic ? "text-right" : "text-left"
+            } text-base md:text-lg font-semibold`}
+          >
+            {isArabic ? "النقل" : "Transports"}
+          </h2>
           <div className="mt-[20px] overflow-x-auto pb-[10px] text-sm md:text-base bg-[#f3f4f6] rounded-lg p-[20px]">
             {transports?.length > 0 ? (
               transports?.map((item, index) => (
@@ -180,11 +196,17 @@ function ServicesPage() {
                 </div>
               ))
             ) : (
-              <p>No Transports found</p>
+              <p className={`${isArabic ? "text-right" : "text-left"}`}>
+                {isArabic ? "لا يوجد بيانات حاليا" : "No Transports found"}
+              </p>
             )}
           </div>
-          <h2 className="mt-[20px] text-base md:text-lg font-semibold">
-            Accommodations
+          <h2
+            className={`${
+              isArabic ? "text-right" : "text-left"
+            } text-base md:text-lg font-semibold mt-[20px]`}
+          >
+            {isArabic ? "الإقامة" : "Accommodations"}
           </h2>
           <div className="mt-[20px] overflow-x-auto pb-[10px] text-sm md:text-base bg-[#f3f4f6] rounded-lg p-[20px]">
             {accommodations?.length > 0 ? (
@@ -215,11 +237,17 @@ function ServicesPage() {
                 </div>
               ))
             ) : (
-              <p>No Accommodations found</p>
+              <p className={`${isArabic ? "text-right" : "text-left"}`}>
+                {isArabic ? "لا يوجد بيانات حاليا" : "No Accommodations found"}
+              </p>
             )}
           </div>
-          <h2 className="mt-[20px] text-base md:text-lg font-semibold">
-            Health
+          <h2
+            className={`${
+              isArabic ? "text-right" : "text-left"
+            } mt-[20px] text-base md:text-lg font-semibold`}
+          >
+            {isArabic ? "الصحة" : "Health"}
           </h2>
           <div className="mt-[20px] overflow-x-auto pb-[10px] text-sm md:text-base bg-[#f3f4f6] rounded-lg p-[20px]">
             {health?.length > 0 ? (
@@ -250,11 +278,17 @@ function ServicesPage() {
                 </div>
               ))
             ) : (
-              <p>No Health services found</p>
+              <p className={`${isArabic ? "text-right" : "text-left"}`}>
+                {isArabic ? "لا يوجد بيانات حاليا" : "No Health services found"}
+              </p>
             )}
           </div>
-          <h2 className="mt-[20px] text-base md:text-lg font-semibold">
-            Security services
+          <h2
+            className={`${
+              isArabic ? "text-right" : "text-left"
+            } mt-[20px] text-base md:text-lg font-semibold`}
+          >
+            {isArabic ? "الأمن" : "Security"}
           </h2>
           <div className="mt-[20px] overflow-x-auto pb-[10px] text-sm md:text-base bg-[#f3f4f6] rounded-lg p-[20px]">
             {security?.length > 0 ? (
@@ -285,11 +319,19 @@ function ServicesPage() {
                 </div>
               ))
             ) : (
-              <p>No Security services found</p>
+              <p className={`${isArabic ? "text-right" : "text-left"}`}>
+                {isArabic
+                  ? "لا يوجد بيانات حاليا"
+                  : "No Security services found"}
+              </p>
             )}
           </div>
-          <h2 className="mt-[20px] text-base md:text-lg font-semibold">
-            Facilities
+          <h2
+            className={`${
+              isArabic ? "text-right" : "text-left"
+            } mt-[20px] text-base md:text-lg font-semibold`}
+          >
+            {isArabic ? "المرافق العمومية" : "Facilities"}
           </h2>
           <div className="mt-[20px] overflow-x-auto pb-[10px] text-sm md:text-base bg-[#f3f4f6] rounded-lg p-[20px]">
             {facilities?.length > 0 ? (
@@ -320,11 +362,17 @@ function ServicesPage() {
                 </div>
               ))
             ) : (
-              <p>No Facilities found</p>
+              <p className={`${isArabic ? "text-right" : "text-left"}`}>
+                {isArabic ? "لا يوجد بيانات حاليا" : "No Facilities found"}
+              </p>
             )}
           </div>
-          <h2 className="mt-[20px] text-base md:text-lg font-semibold">
-            Communications
+          <h2
+            className={`${
+              isArabic ? "text-right" : "text-left"
+            } mt-[20px] text-base md:text-lg font-semibold`}
+          >
+            {isArabic ? "الاِتصالات" : "Communications"}
           </h2>
           <div className="mt-[20px] overflow-x-auto pb-[10px] text-sm md:text-base bg-[#f3f4f6] rounded-lg p-[20px]">
             {communications?.length > 0 ? (
@@ -355,11 +403,17 @@ function ServicesPage() {
                 </div>
               ))
             ) : (
-              <p>No Communications found</p>
+              <p className={`${isArabic ? "text-right" : "text-left"}`}>
+                {isArabic ? "لا يوجد بيانات حاليا" : "No Communications found"}
+              </p>
             )}
           </div>
-          <h2 className="mt-[20px] text-base md:text-lg font-semibold">
-            Educations
+          <h2
+            className={`${
+              isArabic ? "text-right" : "text-left"
+            } mt-[20px] text-base md:text-lg font-semibold`}
+          >
+            {isArabic ? "الدراسة" : "Educations"}
           </h2>
           <div className="mt-[20px] overflow-x-auto pb-[10px] text-sm md:text-base bg-[#f3f4f6] rounded-lg p-[20px]">
             {educations?.length > 0 ? (
@@ -390,11 +444,17 @@ function ServicesPage() {
                 </div>
               ))
             ) : (
-              <p>No Educations found</p>
+              <p className={`${isArabic ? "text-right" : "text-left"}`}>
+                {isArabic ? "لا يوجد بيانات حاليا" : "No Educations found"}
+              </p>
             )}
           </div>
-          <h2 className="mt-[20px] text-base md:text-lg font-semibold">
-            Food Services
+          <h2
+            className={`${
+              isArabic ? "text-right" : "text-left"
+            } mt-[20px] text-base md:text-lg font-semibold`}
+          >
+            {isArabic ? "الطعام" : "Food"}
           </h2>
           <div className="mt-[20px] overflow-x-auto pb-[10px] text-sm md:text-base bg-[#f3f4f6] rounded-lg p-[20px]">
             {food?.length > 0 ? (
@@ -425,7 +485,9 @@ function ServicesPage() {
                 </div>
               ))
             ) : (
-              <p>No Food Services found</p>
+              <p className={`${isArabic ? "text-right" : "text-left"}`}>
+                {isArabic ? "لا يوجد بيانات حاليا" : "No Food services found"}
+              </p>
             )}
           </div>
         </div>

@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import useFetchUsers from "../../../custom-hooks/useFetchUsers";
+import { AppContext } from "../../../AppContext";
 
 function Users() {
+  const { language } = useContext(AppContext);
+  const isArabic = language === "ar";
   const { users, fetchUsers, userDoc, currentPage } = useFetchUsers();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -36,7 +39,7 @@ function Users() {
   });
 
   return (
-    <section className="ml-[100px] lg:ml-[20%] p-[15px] md:p-[30px] min-h-[85vh]">
+    <section className={`${isArabic ? "arabic-font mr-[100px] lg:mr-[20%]" : "ml-[100px] lg:ml-[20%]"}  p-[15px] md:p-[30px] min-h-[85vh]`}>
       {userDoc?.role === "user" && (
         <h1 className="text-lg md:text-xl font-semibold mb-[20px]">
           Nearby users

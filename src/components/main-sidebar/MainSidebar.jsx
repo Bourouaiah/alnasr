@@ -1,46 +1,26 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import logo from "../../assets/logo.png";
 import { NavLink, useLocation } from "react-router-dom";
 import {
   FaHome,
-  FaMoneyBill,
   FaCog,
   FaUserAlt,
 } from "react-icons/fa";
 import { MdMiscellaneousServices } from "react-icons/md";
 
-import { onAuthStateChanged } from "firebase/auth";
-import { auth, db } from "../../../firebase";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { AppContext } from "../../../AppContext";
 
 function MainSidebar() {
+  const { language } = useContext(AppContext);
+  const isArabic = language === "ar";
   const activeStyles = {
     color: "#FFC265",
   };
 
-  const [userDoc, setUserDoc] = useState(null);
-  useEffect(() => {
-    const fetchData = async () => {
-      onAuthStateChanged(auth, async (user) => {
-        if (user) {
-          const usersQuery = query(
-            collection(db, "users"),
-            where("email", "==", user.email)
-          );
-          const querySnapshot = await getDocs(usersQuery);
-          querySnapshot.forEach((doc) => {
-            setUserDoc(doc.data());
-          });
-        }
-      });
-    };
-    fetchData();
-  }, []);
-
   const location = useLocation();
 
   return (
-    <div className="fixed mainsidebar-shadow p-[30px] left-0 top-0 h-full w-[100px] lg:w-[20%]">
+    <div className={`${isArabic ? "arabic-font right-0" : "left-0"} fixed mainsidebar-shadow p-[30px] top-0 h-full w-[100px] lg:w-[20%]`}>
       <div className="flex justify-center">
         <img className="w-[90px]" src={logo} alt="logo" />
       </div>
@@ -48,17 +28,17 @@ function MainSidebar() {
         <li className="hover:bg-special-blue font-semibold text-second-black hover:text-main-black text-lg rounded-lg">
           <NavLink
             to="/alnasr/home"
-            className="flex items-center gap-[8px] px-[10px] py-[8px] rounded-lg"
+            className={`flex ${isArabic ? "flex-row-reverse" : ""} items-center gap-[8px] px-[10px] py-[8px] rounded-lg`}
             style={location.pathname === "/alnasr/home" ? activeStyles : null}
           >
             <FaHome />
-            <p className="hidden lg:block">Overview</p>
+            <p className="hidden lg:block">{isArabic ? "نظرة عامّة" : "Overview"}</p>
           </NavLink>
         </li>
         <li className="hover:bg-special-blue font-semibold text-second-black hover:text-main-black text-lg rounded-lg">
           <NavLink
             to="/alnasr/home/services"
-            className="flex items-center gap-[8px] px-[10px] py-[8px] rounded-lg"
+            className={`flex ${isArabic ? "flex-row-reverse" : ""} items-center gap-[8px] px-[10px] py-[8px] rounded-lg`}
             style={
               location.pathname === "/alnasr/home/services" ||
               location.pathname === "/alnasr/home/services/accommodation" ||
@@ -73,13 +53,13 @@ function MainSidebar() {
             }
           >
             <MdMiscellaneousServices />
-            <p className="hidden lg:block">Services</p>
+            <p className="hidden lg:block">{isArabic ? "الخدمات" : "Services"}</p>
           </NavLink>
         </li>
         <li className="hover:bg-special-blue font-semibold text-second-black hover:text-main-black text-lg rounded-lg">
           <NavLink
             to="/alnasr/home/users"
-            className="flex items-center gap-[8px] px-[10px] py-[8px] rounded-lg"
+            className={`flex ${isArabic ? "flex-row-reverse" : ""} items-center gap-[8px] px-[10px] py-[8px] rounded-lg`}
             style={
               location.pathname === "/alnasr/home/users"
                 ? activeStyles
@@ -87,13 +67,13 @@ function MainSidebar() {
             }
           >
             <FaUserAlt />
-            <p className="hidden lg:block">Users</p>
+            <p className="hidden lg:block">{isArabic ? "المستخدمين" : "Users"}</p>
           </NavLink>
         </li>
         <li className="hover:bg-special-blue font-semibold text-second-black hover:text-main-black text-lg rounded-lg">
           <NavLink
             to="/alnasr/home/settings"
-            className="flex items-center gap-[8px] px-[10px] py-[8px] rounded-lg"
+            className={`flex ${isArabic ? "flex-row-reverse" : ""} items-center gap-[8px] px-[10px] py-[8px] rounded-lg`}
             style={
               location.pathname === "/alnasr/home/settings"
                 ? activeStyles
@@ -101,7 +81,7 @@ function MainSidebar() {
             }
           >
             <FaCog />
-            <p className="hidden lg:block">Settings</p>
+            <p className="hidden lg:block">{isArabic ? "الإعدادات" : "Settings"}</p>
           </NavLink>
         </li>
       </ul>

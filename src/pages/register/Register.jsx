@@ -1,13 +1,16 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import emailjs from "@emailjs/browser";
 import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { AppContext } from "../../../AppContext";
 
 function generateRandomNumber() {
   return Math.floor(100000 + Math.random() * 900000);
 }
 
 function Register() {
+  const { language } = useContext(AppContext);
+  const isArabic = language === "ar";
   const navigate = useNavigate();
   const form = useRef();
   const [randomNumber, setRandomNumber] = useState(generateRandomNumber());
@@ -70,33 +73,41 @@ function Register() {
   };
 
   return (
-    <section className="px-[20px] md:px-[50px] md:w-[70%] lg:w-[50%] md:mx-auto pt-[120px]">
+    <section
+      className={`${
+        isArabic ? "arabic-font" : ""
+      } px-[20px] md:px-[50px] md:w-[70%] lg:w-[50%] md:mx-auto pt-[120px]`}
+    >
       <div>
         <h2 className="text-second-black text-2xl md:text-3xl text-center font-semibold">
-          Create your Al Nasr account
+          {isArabic ? "أنشئ حسابك في الناصر" : "Create your Al Nasr account"}
         </h2>
-        <div className="flex justify-center gap-[5px] text-sm mt-[10px]">
-          <p className="text-second-black">Already have an account?</p>
+        <div className={`${isArabic ? "flex-row-reverse" : ""} flex justify-center gap-[5px] text-sm mt-[10px]`}>
+          <p className="text-second-black">
+            {isArabic ? "لديك حساب ؟" : "Already have an account?"}
+          </p>
           <Link
             to="/alnasr/menu/login"
             className="text-second-black underline font-semibold"
           >
-            Log in
+            {isArabic ? "تسجيل الدخول" : "Log in"}
           </Link>
         </div>
       </div>
       <form onSubmit={handleSubmit} ref={form} className="my-[50px]" action="">
         <div className="flex flex-col">
-          <label className="text-second-black text-sm" htmlFor="user-email">
-            First, enter your email address
+          <label className={`${isArabic ? "text-right" : "text-left"} text-second-black text-sm`} htmlFor="user-email">
+            {isArabic
+              ? "أولاً، أدخل عنوان بريدك الإلكتروني"
+              : "First, enter your email address"}
           </label>
           <input
             onChange={(e) => setEmail(e.target.value)}
-            className="mt-[10px] rounded-[5px] p-[8px] border-2 border-second-black hover:border-[#000] duration-500 ease-in-out outline-[#000]"
+            className={`${isArabic ? "text-right" : "text-left"} mt-[10px] rounded-[5px] p-[8px] border-2 border-second-black hover:border-[#000] duration-500 ease-in-out outline-[#000]`}
             type="email"
             name="user-email"
             id="user-email"
-            placeholder="Your email"
+            placeholder={isArabic ? "الِايميل الخاص بك" : "Your email"}
             disabled={showRegisterButton}
           />
         </div>
@@ -105,7 +116,7 @@ function Register() {
             onClick={handleSendVerificationCode}
             className="mt-4 w-full p-3 text-second-black hover:text-[#000] font-semibold bg-second-yellow rounded-md hover:bg-main-yellow"
           >
-            Send Verification code
+            {isArabic ? "أرسل رمز التحقق" : "Send Verification code"}
           </button>
         ) : null}
         {showVerificationCodeInput ? (
@@ -122,7 +133,7 @@ function Register() {
               onClick={handleVerifyCode}
               className="mt-4 w-full p-3 text-second-black hover:text-[#000] font-semibold bg-second-yellow rounded-md hover:bg-main-yellow"
             >
-              Verify Code
+              {isArabic ? "تحقق من الرمز" : "Verify code"}
             </button>
           </div>
         ) : null}
@@ -141,23 +152,23 @@ function Register() {
         >
           {loading ? (
             <div className="flex items-center justify-center">
-              <div className="mr-2">Registering...</div>
+              <div className="mr-2">{isArabic ? "يتم إنشاء حسابك" : "Registering ..."}</div>
               <div className="loader"></div>
             </div>
           ) : (
-            "Register"
+            <p>{isArabic ? "إنشاء حساب" : "Register"}</p>
           )}
         </button>
       </form>
 
-      <div className="flex flex-col mb-[20px]">
+      {/* <div className={`flex flex-col mb-[20px] ${isArabic ? "text-right" : "text-left"}`}>
         <Link
           to="/alnasr/menu/registerasadmin"
           className="text-[#000] font-semibold underline"
         >
-          Register as admin?
+          {isArabic ? "إنشاء حساب كأدمن ؟" : "Register as admin?"}
         </Link>
-      </div>
+      </div> */}
       <div>
         <p className="text-sm text-second-black text-center mt-[40px]">
           By registering, you accept our{" "}

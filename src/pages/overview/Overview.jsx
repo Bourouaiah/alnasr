@@ -7,8 +7,12 @@ import useFetchFacilities from "../../../custom-hooks/useFetchFacilities";
 import useFetchCommunications from "../../../custom-hooks/useFetchCommunications";
 import useFetchEducations from "../../../custom-hooks/useFetchEducations";
 import useFetchFood from "../../../custom-hooks/useFetchFood";
+import { useContext } from "react";
+import { AppContext } from "../../../AppContext";
 
 function Overview() {
+  const { language } = useContext(AppContext);
+  const isArabic = language === "ar";
   const { users } = useFetchUsers();
   const { transports } = useFetchTransports();
   const { accommodations } = useFetchAccommodations();
@@ -18,8 +22,6 @@ function Overview() {
   const { communications } = useFetchCommunications();
   const { educations } = useFetchEducations();
   const { food } = useFetchFood();
-
-  console.log(users)
 
   const filteredUsers = users.filter((user) => user.role !== "admin");
 
@@ -34,22 +36,22 @@ function Overview() {
   const lastTwoFood = food?.slice(-2);
 
   return (
-    <section className="ml-[100px] lg:ml-[20%] p-[15px] md:p-[30px] min-h-[85vh]">
+    <section className={`${isArabic ? "arabic-font mr-[100px] lg:mr-[20%]" : "ml-[100px] lg:ml-[20%]"}  p-[15px] md:p-[30px] min-h-[85vh]`}>
       <div>
-        <h1 className="text-main-black text-lg md:text-2xl">Last users</h1>
+        <h1 className={`${isArabic ? "text-right" : ""} text-main-black text-lg md:text-2xl`}>{isArabic ? "آخر المستخدمين" : "Last users"}</h1>
         <div className="flex flex-col mt-[20px] overflow-x-auto pb-[10px] text-sm md:text-base bg-[#f3f4f6] rounded-lg p-[20px]">
           {lastTenUsers?.length > 0 ? (
             <table className="w-full">
               <thead>
                 <tr className="text-left">
                   <th className="mx-[10px]">#</th>
-                  <th className="mx-[10px]">ProfilePic</th>
-                  <th className="mx-[10px]">Name</th>
-                  <th className="mx-[10px]">Email</th>
-                  <th className="mx-[10px]">Phone Number</th>
-                  <th className="mx-[10px]">Country</th>
-                  <th className="mx-[10px]">Age</th>
-                  <th className="mx-[10px]">Gender</th>
+                  <th className="mx-[10px]">{isArabic ? "صورة الحساب" : "ProfilePic"}</th>
+                  <th className="mx-[10px]">{isArabic ? "الاِسم" : "Name"}</th>
+                  <th className="mx-[10px]">{isArabic ? "الاِيميل" : "Email"}</th>
+                  <th className="mx-[10px]">{isArabic ? "رقم الهاتف" : "Phone Number"}</th>
+                  <th className="mx-[10px]">{isArabic ? "البلد" : "Country"}</th>
+                  <th className="mx-[10px]">{isArabic ? "السّن" : "Age"}</th>
+                  <th className="mx-[10px]">{isArabic ? "الجنس" : "Gender"}</th>
                 </tr>
               </thead>
               <tbody>
@@ -80,389 +82,289 @@ function Overview() {
               </tbody>
             </table>
           ) : (
-            <p>No Users found</p>
+            <p>{isArabic ? "لا يوجد مستخدمين حاليا" : "No Users found"}</p>
           )}
         </div>
       </div>
       <div className="mt-[40px]">
-        <h1 className="text-main-black text-lg md:text-2xl mb-[40px]">
-          Last services
+        <h1 className={`${isArabic ? "text-right" : ""} text-main-black text-lg md:text-2xl mb-[40px]`}>
+        {isArabic ? "آخر الخدمات" : "Last services"}
         </h1>
-        <h2 className="text-base md:text-lg">Transports</h2>
+        <h2 className={`${isArabic ? "text-right" : "text-left"} text-base md:text-lg font-semibold`}>{isArabic ? "النقل" : "Transports"}</h2>
         <div className="mt-[20px] overflow-x-auto pb-[10px] text-sm md:text-base bg-[#f3f4f6] rounded-lg p-[20px]">
           {lastTwoTransports?.length > 0 ? (
-            <table className="w-full">
-              <thead>
-                <tr className="text-left">
-                  <th className="p-[3px] w-[20px] h-[20px]">#</th>
-                  <th>Type</th>
-                  <th>Location</th>
-                  <th>Map</th>
-                  <th>Link</th>
-                </tr>
-              </thead>
-              <tbody>
-                {lastTwoTransports?.map((item, index) => (
-                  <tr key={index} className="py-[10px] border-b">
-                    <td className="flex items-center justify-center rounded-full font-semibold">
-                      {index + 1}
-                    </td>
-                    <td>{item.type}</td>
-                    <td>{item.location}</td>
-                    <td>
-                      <a
-                        target="_blank"
-                        className="text-second-black font-semibold"
-                        href={item.mapLocation}
-                      >
-                        See in map
-                      </a>
-                    </td>
-                    <td>
-                      <a
-                        target="_blank"
-                        className="text-second-black font-semibold"
-                        href={item.link}
-                      >
-                        See link
-                      </a>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            lastTwoTransports?.map((item, index) => (
+              <div
+                className="items-center justify-start gap-[35px] flex"
+                key={index}
+              >
+                <h2 className="border-2 p-[3px] w-[20px] h-[20px] flex items-center justify-center rounded-full font-semibold">
+                  {index + 1}
+                </h2>
+                <h2>{item.type}</h2>
+                <p>{item.location}</p>
+                <a
+                  target="_blank"
+                  className="text-second-black border-b-2 font-semibold"
+                  href={item.mapLocation}
+                >
+                  See in map
+                </a>
+                <a
+                  target="_blank"
+                  className="text-second-black border-b-2 font-semibold"
+                  href={item.link}
+                >
+                  See link
+                </a>
+              </div>
+            ))
           ) : (
-            <p>No Transports found</p>
+            <p className={`${isArabic ? "text-right" : "text-left"}`}>{isArabic ? "لا يوجد بيانات حاليا" : "No Transports found"}</p>
           )}
         </div>
-
-        <h2 className="mt-[20px] text-base md:text-lg">Accommodations</h2>
+        <h2 className={`${isArabic ? "text-right" : "text-left"} text-base md:text-lg font-semibold mt-[20px]`}>
+        {isArabic ? "الإقامة" : "Accommodations"}
+        </h2>
         <div className="mt-[20px] overflow-x-auto pb-[10px] text-sm md:text-base bg-[#f3f4f6] rounded-lg p-[20px]">
           {lastTwoAccommodations?.length > 0 ? (
-            <table className="w-full">
-              <thead>
-                <tr className="text-left">
-                  <th className="p-[3px] w-[20px] h-[20px]">#</th>
-                  <th>Type</th>
-                  <th>Location</th>
-                  <th>Map</th>
-                  <th>Link</th>
-                </tr>
-              </thead>
-              <tbody>
-                {lastTwoAccommodations?.map((item, index) => (
-                  <tr key={index} className="py-[10px] border-b">
-                    <td className="flex items-center justify-center rounded-full font-semibold">
-                      {index + 1}
-                    </td>
-                    <td>{item.type}</td>
-                    <td>{item.location}</td>
-                    <td>
-                      <a
-                        target="_blank"
-                        className="text-second-black font-semibold"
-                        href={item.mapLocation}
-                      >
-                        See in map
-                      </a>
-                    </td>
-                    <td>
-                      <a
-                        target="_blank"
-                        className="text-second-black font-semibold"
-                        href={item.link}
-                      >
-                        See link
-                      </a>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            lastTwoAccommodations?.map((item, index) => (
+              <div
+                className="items-center justify-start gap-[35px] flex"
+                key={index}
+              >
+                <h2 className="border-2 p-[3px] w-[20px] h-[20px] flex items-center justify-center rounded-full font-semibold">
+                  {index + 1}
+                </h2>
+                <h2>{item.type}</h2>
+                <p>{item.location}</p>
+                <a
+                  target="_blank"
+                  className="text-second-black border-b-2 font-semibold"
+                  href={item.mapLocation}
+                >
+                  See in map
+                </a>
+                <a
+                  target="_blank"
+                  className="text-second-black border-b-2 font-semibold"
+                  href={item.link}
+                >
+                  See link
+                </a>
+              </div>
+            ))
           ) : (
-            <p>No Accommodations found</p>
+            <p className={`${isArabic ? "text-right" : "text-left"}`}>{isArabic ? "لا يوجد بيانات حاليا" : "No Accommodations found"}</p>
           )}
         </div>
-        <h2 className="mt-[20px] text-base md:text-lg">Health</h2>
+        <h2 className={`${isArabic ? "text-right" : "text-left"} mt-[20px] text-base md:text-lg font-semibold`}>{isArabic ? "الصحة" : "Health"}</h2>
         <div className="mt-[20px] overflow-x-auto pb-[10px] text-sm md:text-base bg-[#f3f4f6] rounded-lg p-[20px]">
           {lastTwoHealth?.length > 0 ? (
-            <table className="w-full">
-              <thead>
-                <tr className="text-left">
-                  <th className="p-[3px] w-[20px] h-[20px]">#</th>
-                  <th>Type</th>
-                  <th>Location</th>
-                  <th>Map</th>
-                  <th>Link</th>
-                </tr>
-              </thead>
-              <tbody>
-                {lastTwoHealth?.map((item, index) => (
-                  <tr key={index} className="py-[10px] border-b">
-                    <td className="flex items-center justify-center rounded-full font-semibold">
-                      {index + 1}
-                    </td>
-                    <td>{item.type}</td>
-                    <td>{item.location}</td>
-                    <td>
-                      <a
-                        target="_blank"
-                        className="text-second-black font-semibold"
-                        href={item.mapLocation}
-                      >
-                        See in map
-                      </a>
-                    </td>
-                    <td>
-                      <a
-                        target="_blank"
-                        className="text-second-black font-semibold"
-                        href={item.link}
-                      >
-                        See link
-                      </a>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            lastTwoHealth?.map((item, index) => (
+              <div
+                className="items-center justify-start gap-[35px] flex"
+                key={index}
+              >
+                <h2 className="border-2 p-[3px] w-[20px] h-[20px] flex items-center justify-center rounded-full font-semibold">
+                  {index + 1}
+                </h2>
+                <h2>{item.type}</h2>
+                <p>{item.location}</p>
+                <a
+                  target="_blank"
+                  className="text-second-black border-b-2 font-semibold"
+                  href={item.mapLocation}
+                >
+                  See in map
+                </a>
+                <a
+                  target="_blank"
+                  className="text-second-black border-b-2 font-semibold"
+                  href={item.link}
+                >
+                  See link
+                </a>
+              </div>
+            ))
           ) : (
-            <p>No Health services found</p>
+            <p className={`${isArabic ? "text-right" : "text-left"}`}>{isArabic ? "لا يوجد بيانات حاليا" : "No Health services found"}</p>
           )}
         </div>
-        <h2 className="mt-[20px] text-base md:text-lg">Security services</h2>
+        <h2 className={`${isArabic ? "text-right" : "text-left"} mt-[20px] text-base md:text-lg font-semibold`}>
+        {isArabic ? "الأمن" : "Security"}
+        </h2>
         <div className="mt-[20px] overflow-x-auto pb-[10px] text-sm md:text-base bg-[#f3f4f6] rounded-lg p-[20px]">
           {lastTwoSecurity?.length > 0 ? (
-            <table className="w-full">
-              <thead>
-                <tr className="text-left">
-                  <th className="p-[3px] w-[20px] h-[20px]">#</th>
-                  <th>Type</th>
-                  <th>Location</th>
-                  <th>Map</th>
-                  <th>Link</th>
-                </tr>
-              </thead>
-              <tbody>
-                {lastTwoSecurity?.map((item, index) => (
-                  <tr key={index} className="py-[10px] border-b">
-                    <td className="flex items-center justify-center rounded-full font-semibold">
-                      {index + 1}
-                    </td>
-                    <td>{item.type}</td>
-                    <td>{item.location}</td>
-                    <td>
-                      <a
-                        target="_blank"
-                        className="text-second-black font-semibold"
-                        href={item.mapLocation}
-                      >
-                        See in map
-                      </a>
-                    </td>
-                    <td>
-                      <a
-                        target="_blank"
-                        className="text-second-black font-semibold"
-                        href={item.link}
-                      >
-                        See link
-                      </a>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            lastTwoSecurity?.map((item, index) => (
+              <div
+                className="items-center justify-start gap-[35px] flex"
+                key={index}
+              >
+                <h2 className="border-2 p-[3px] w-[20px] h-[20px] flex items-center justify-center rounded-full font-semibold">
+                  {index + 1}
+                </h2>
+                <h2>{item.type}</h2>
+                <p>{item.location}</p>
+                <a
+                  target="_blank"
+                  className="text-second-black border-b-2 font-semibold"
+                  href={item.mapLocation}
+                >
+                  See in map
+                </a>
+                <a
+                  target="_blank"
+                  className="text-second-black border-b-2 font-semibold"
+                  href={item.link}
+                >
+                  See link
+                </a>
+              </div>
+            ))
           ) : (
-            <p>No Security services found</p>
+            <p className={`${isArabic ? "text-right" : "text-left"}`}>{isArabic ? "لا يوجد بيانات حاليا" : "No Security services found"}</p>
           )}
         </div>
-        <h2 className="mt-[20px] text-base md:text-lg">Facilities</h2>
+        <h2 className={`${isArabic ? "text-right" : "text-left"} mt-[20px] text-base md:text-lg font-semibold`}>
+        {isArabic ? "المرافق العمومية" : "Facilities"}
+        </h2>
         <div className="mt-[20px] overflow-x-auto pb-[10px] text-sm md:text-base bg-[#f3f4f6] rounded-lg p-[20px]">
           {lastTwoFacilities?.length > 0 ? (
-            <table className="w-full">
-              <thead>
-                <tr className="text-left">
-                  <th className="p-[3px] w-[20px] h-[20px]">#</th>
-                  <th>Type</th>
-                  <th>Location</th>
-                  <th>Map</th>
-                  <th>Link</th>
-                </tr>
-              </thead>
-              <tbody>
-                {lastTwoFacilities?.map((item, index) => (
-                  <tr key={index} className="py-[10px] border-b">
-                    <td className="flex items-center justify-center rounded-full font-semibold">
-                      {index + 1}
-                    </td>
-                    <td>{item.type}</td>
-                    <td>{item.location}</td>
-                    <td>
-                      <a
-                        target="_blank"
-                        className="text-second-black font-semibold"
-                        href={item.mapLocation}
-                      >
-                        See in map
-                      </a>
-                    </td>
-                    <td>
-                      <a
-                        target="_blank"
-                        className="text-second-black font-semibold"
-                        href={item.link}
-                      >
-                        See link
-                      </a>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            lastTwoFacilities?.map((item, index) => (
+              <div
+                className="items-center justify-start gap-[35px] flex"
+                key={index}
+              >
+                <h2 className="border-2 p-[3px] w-[20px] h-[20px] flex items-center justify-center rounded-full font-semibold">
+                  {index + 1}
+                </h2>
+                <h2>{item.type}</h2>
+                <p>{item.location}</p>
+                <a
+                  target="_blank"
+                  className="text-second-black border-b-2 font-semibold"
+                  href={item.mapLocation}
+                >
+                  See in map
+                </a>
+                <a
+                  target="_blank"
+                  className="text-second-black border-b-2 font-semibold"
+                  href={item.link}
+                >
+                  See link
+                </a>
+              </div>
+            ))
           ) : (
-            <p>No Facilities found</p>
+            <p className={`${isArabic ? "text-right" : "text-left"}`}>{isArabic ? "لا يوجد بيانات حاليا" : "No Facilities found"}</p>
           )}
         </div>
-        <h2 className="mt-[20px] text-base md:text-lg">Communications</h2>
+        <h2 className={`${isArabic ? "text-right" : "text-left"} mt-[20px] text-base md:text-lg font-semibold`}>
+        {isArabic ? "الاِتصالات" : "Communications"}
+        </h2>
         <div className="mt-[20px] overflow-x-auto pb-[10px] text-sm md:text-base bg-[#f3f4f6] rounded-lg p-[20px]">
           {lastTwoCommunications?.length > 0 ? (
-            <table className="w-full">
-              <thead>
-                <tr className="text-left">
-                  <th className="p-[3px] w-[20px] h-[20px]">#</th>
-                  <th>Type</th>
-                  <th>Location</th>
-                  <th>Map</th>
-                  <th>Link</th>
-                </tr>
-              </thead>
-              <tbody>
-                {lastTwoCommunications?.map((item, index) => (
-                  <tr key={index} className="py-[10px] border-b">
-                    <td className="flex items-center justify-center rounded-full font-semibold">
-                      {index + 1}
-                    </td>
-                    <td>{item.type}</td>
-                    <td>{item.location}</td>
-                    <td>
-                      <a
-                        target="_blank"
-                        className="text-second-black font-semibold"
-                        href={item.mapLocation}
-                      >
-                        See in map
-                      </a>
-                    </td>
-                    <td>
-                      <a
-                        target="_blank"
-                        className="text-second-black font-semibold"
-                        href={item.link}
-                      >
-                        See link
-                      </a>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            lastTwoCommunications?.map((item, index) => (
+              <div
+                className="items-center justify-start gap-[35px] flex"
+                key={index}
+              >
+                <h2 className="border-2 p-[3px] w-[20px] h-[20px] flex items-center justify-center rounded-full font-semibold">
+                  {index + 1}
+                </h2>
+                <h2>{item.type}</h2>
+                <p>{item.location}</p>
+                <a
+                  target="_blank"
+                  className="text-second-black border-b-2 font-semibold"
+                  href={item.mapLocation}
+                >
+                  See in map
+                </a>
+                <a
+                  target="_blank"
+                  className="text-second-black border-b-2 font-semibold"
+                  href={item.link}
+                >
+                  See link
+                </a>
+              </div>
+            ))
           ) : (
-            <p>No Communications found</p>
+            <p className={`${isArabic ? "text-right" : "text-left"}`}>{isArabic ? "لا يوجد بيانات حاليا" : "No Communications found"}</p>
           )}
-        </div>
-        <h2 className="mt-[20px] text-base md:text-lg">Educations</h2>
+        </div> 
+        <h2 className={`${isArabic ? "text-right" : "text-left"} mt-[20px] text-base md:text-lg font-semibold`}>
+        {isArabic ? "الدراسة" : "Educations"}
+        </h2>
         <div className="mt-[20px] overflow-x-auto pb-[10px] text-sm md:text-base bg-[#f3f4f6] rounded-lg p-[20px]">
           {lastTwoEducations?.length > 0 ? (
-            <table className="w-full">
-              <thead>
-                <tr className="text-left">
-                  <th className="p-[3px] w-[20px] h-[20px]">#</th>
-                  <th>Type</th>
-                  <th>Location</th>
-                  <th>Map</th>
-                  <th>Link</th>
-                </tr>
-              </thead>
-              <tbody>
-                {lastTwoEducations?.map((item, index) => (
-                  <tr key={index} className="py-[10px] border-b">
-                    <td className="flex items-center justify-center rounded-full font-semibold">
-                      {index + 1}
-                    </td>
-                    <td>{item.type}</td>
-                    <td>{item.location}</td>
-                    <td>
-                      <a
-                        target="_blank"
-                        className="text-second-black font-semibold"
-                        href={item.mapLocation}
-                      >
-                        See in map
-                      </a>
-                    </td>
-                    <td>
-                      <a
-                        target="_blank"
-                        className="text-second-black font-semibold"
-                        href={item.link}
-                      >
-                        See link
-                      </a>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            lastTwoEducations?.map((item, index) => (
+              <div
+                className="items-center justify-start gap-[35px] flex"
+                key={index}
+              >
+                <h2 className="border-2 p-[3px] w-[20px] h-[20px] flex items-center justify-center rounded-full font-semibold">
+                  {index + 1}
+                </h2>
+                <h2>{item.type}</h2>
+                <p>{item.location}</p>
+                <a
+                  target="_blank"
+                  className="text-second-black border-b-2 font-semibold"
+                  href={item.mapLocation}
+                >
+                  See in map
+                </a>
+                <a
+                  target="_blank"
+                  className="text-second-black border-b-2 font-semibold"
+                  href={item.link}
+                >
+                  See link
+                </a>
+              </div>
+            ))
           ) : (
-            <p>No Educations found</p>
+            <p className={`${isArabic ? "text-right" : "text-left"}`}>{isArabic ? "لا يوجد بيانات حاليا" : "No Educations found"}</p>
+
           )}
         </div>
-        <h2 className="mt-[20px] text-base md:text-lg">Food Services</h2>
+        <h2 className={`${isArabic ? "text-right" : "text-left"} mt-[20px] text-base md:text-lg font-semibold`}>
+        {isArabic ? "الطعام" : "Food"}
+        </h2>
         <div className="mt-[20px] overflow-x-auto pb-[10px] text-sm md:text-base bg-[#f3f4f6] rounded-lg p-[20px]">
           {lastTwoFood?.length > 0 ? (
-            <table className="w-full">
-              <thead>
-                <tr className="text-left">
-                  <th className="p-[3px] w-[20px] h-[20px]">#</th>
-                  <th>Type</th>
-                  <th>Location</th>
-                  <th>Map</th>
-                  <th>Link</th>
-                </tr>
-              </thead>
-              <tbody>
-                {lastTwoFood?.map((item, index) => (
-                  <tr key={index} className="py-[10px] border-b">
-                    <td className="flex items-center justify-center rounded-full font-semibold">
-                      {index + 1}
-                    </td>
-                    <td>{item.type}</td>
-                    <td>{item.location}</td>
-                    <td>
-                      <a
-                        target="_blank"
-                        className="text-second-black font-semibold"
-                        href={item.mapLocation}
-                      >
-                        See in map
-                      </a>
-                    </td>
-                    <td>
-                      <a
-                        target="_blank"
-                        className="text-second-black font-semibold"
-                        href={item.link}
-                      >
-                        See link
-                      </a>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            lastTwoFood?.map((item, index) => (
+              <div
+                className="items-center justify-start gap-[35px] flex"
+                key={index}
+              >
+                <h2 className="border-2 p-[3px] w-[20px] h-[20px] flex items-center justify-center rounded-full font-semibold">
+                  {index + 1}
+                </h2>
+                <h2>{item.type}</h2>
+                <p>{item.location}</p>
+                <a
+                  target="_blank"
+                  className="text-second-black border-b-2 font-semibold"
+                  href={item.mapLocation}
+                >
+                  See in map
+                </a>
+                <a
+                  target="_blank"
+                  className="text-second-black border-b-2 font-semibold"
+                  href={item.link}
+                >
+                  See link
+                </a>
+              </div>
+            ))
           ) : (
-            <p>No Food services found</p>
+            <p className={`${isArabic ? "text-right" : "text-left"}`}>{isArabic ? "لا يوجد بيانات حاليا" : "No Food services found"}</p>
           )}
         </div>
       </div>
