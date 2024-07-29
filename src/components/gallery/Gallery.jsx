@@ -1,18 +1,30 @@
+import { useContext } from "react";
 import imageOne from "../../assets/image-one.png";
 import imageTwo from "../../assets/image-two.png";
 import imageThree from "../../assets/image-three.png";
 import imageFour from "../../assets/image-four.png";
 import imageFive from "../../assets/image-five.png";
+import { AppContext } from "../../../AppContext";
 
 function Gallery() {
+  const { language } = useContext(AppContext);
+  const isArabic = language === "ar";
   return (
-    <section id="Gallery" className="px-[20px] md:px-[50px] pt-[50px] bg-[#fff]">
+    <section
+      id="Gallery"
+      className={`${
+        isArabic ? "arabic-font" : ""
+      } px-[20px] md:px-[50px] pt-[50px] bg-[#fff]`}
+    >
       <h1 className="text-[30px] lg:text-[54px] text-center font-semibold">
-        Gallery Footage In Saudi Arabia
+        {isArabic
+          ? "لقطات من المعرض في السعودية"
+          : "Gallery Footage In Saudi Arabia to arabic"}
       </h1>
       <p className="text-[15px] lg:text-[18px] text-center">
-        We provide comfort for our customers, with the various facilities we
-        provide that we provide
+        {isArabic
+          ? "نحن نقدم الراحة لعملائنا من خلال المرافق المتنوعة التي نوفرها"
+          : "We ensure our customers' comfort with the various facilities we offer."}
       </p>
       <div className="flex flex-wrap md:flex-nowrap mt-[50px]">
         <div className="w-full md:w-[50%]">

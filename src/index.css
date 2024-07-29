@@ -2,8 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body {
   font-family: "Jost", sans-serif;
+}
+
+.arabic-font {
+  font-family: "Changa", sans-serif;
 }
 
 html {
@@ -11,7 +16,7 @@ html {
 }
 
 .nav-shadow {
-  box-shadow: 0 4px 2px -2px rgba(0,0,0,.2);
+  box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
 }
 .card-shadow {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;

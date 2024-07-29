@@ -19,22 +19,20 @@ const languages = {
 
 function NavBar() {
   const location = useLocation();
-
-  console.log(location.pathname);
   const { setIsNavBarShown, language, changeLanguage } = useContext(AppContext);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
   const texts = navData[language];
   const isArabic = language === "ar";
 
   return (
-    <nav className="nav-shadow fixed top-0 w-full z-10 bg-[#fff] flex items-center justify-between px-[20px] md:px-[50px] py-[20px]">
+    <nav className={`${language === "ar" ? "arabic-font" : ""} nav-shadow fixed top-0 w-full z-10 bg-[#fff] flex items-center justify-between px-[20px] md:px-[50px] py-[20px]`}>
       <div>
         <Link to="/alnasr/menu">
           <img className="w-[90px]" src={logo} alt="logo" />
         </Link>
       </div>
       {(location.pathname === "/alnasr/menu" || location.pathname === "/alnasr/menu/") ? (
-        <ul className="hidden lg:flex items-center gap-[25px]">
+        <ul className={`hidden lg:flex items-center gap-[25px] ${isArabic ? "flex-row-reverse" : ""}`}>
           {Object.keys(texts).map((key) => (
             <li
               key={key}
@@ -47,10 +45,10 @@ function NavBar() {
       ) : null}
       <div className="hidden lg:flex gap-[20px]">
         <button className="bg-second-yellow py-[5px] px-[20px] font-medium rounded-lg text-second-black border border-main-yellow hover:border-[#000] hover:text-main-yellow hover:bg-second-black duration-200">
-          <Link to="/alnasr/menu/register">Register</Link>
+          <Link to="/alnasr/menu/register">{isArabic ? "حساب جديد" : "Register"}</Link>
         </button>
         <button className="bg-second-yellow py-[5px] px-[20px] font-medium rounded-lg text-second-black border border-main-yellow hover:text-[#000] hover:bg-main-yellow duration-200">
-          <Link to="/alnasr/menu/login">Login</Link>
+          <Link to="/alnasr/menu/login">{isArabic ? "تسجيل الدخول" : "Login"}</Link>
         </button>
       </div>
       <div className="relative">

@@ -32,40 +32,27 @@ export const sidebarData = {
     },
 };
 
-export const servicesData = [
-    {
-        title: "Safety & Security",
-        description: "We take care of your security in 24 hours"
+export const landingData = {
+    en: {
+        title: "Make it easy for your Hajj worship with Al Nasr Travel",
+        description: "Facilitate your Hajj pilgrimage with us, we already have hundreds of thousands of customers, you can go for Umrah to Mecca and Medina."
     },
-    {
-        title: "Conseling",
-        description: "Provide counseling to stay fit spiritually and religius"
+    ar: {
+        title: "اجعل حجك سهلاً مع شركة الناصر للسفر",
+        description: "سهل حجك معنا، لدينا بالفعل مئات الآلاف من العملاء، يمكنك الذهاب للعمرة إلى مكة والمدينة"
+    }
+}
+
+export const agencyData = {
+    en: {
+        title: "A Wonderful Agency To Fulfill your Dreams",
+        description: "The Hajj and Umrah pilgrimages are smooth, the heart is clean. we have been trusted since 2024 and have obtained a license from SAUDI ARABIA to become this travel agency."
     },
-    {
-        title: "Vehicle In Saudi",
-        description: "Bus and Car Vehicles While in Saudi"
-    },
-    {
-        title: "Health In Saudi",
-        description: "Free Health Facilities for every customer"
-    },
-    {
-        title: "Hostel Rate 5",
-        description: "5 star hotel accommodation every customer"
-    },
-    {
-        title: "Food & Drink",
-        description: "Provide food and drinks while in Saudi"
-    },
-    {
-        title: "Membership",
-        description: "Obtain a membership card for each customer"
-    },
-    {
-        title: "Vaccine",
-        description: "Free meningitis vaccine for all customers"
-    },
-]
+    ar: {
+        title: "وكالة رائعة لتحقيق أحلامك",
+        description: "رحلات الحج والعمرة سلسة، والقلب نقي. لقد وثق بنا منذ عام 2024 وحصلنا على ترخيص من المملكة العربية السعودية لنصبح وكالة السفر هذه"
+    }
+}
 
 export const contactUsData = {
     en: {
