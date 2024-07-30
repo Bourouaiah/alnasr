@@ -125,6 +125,8 @@ function Settings() {
     }
   };
 
+  console.log(isArabic)
+
   return (
     <section className={`${isArabic ? "arabic-font mr-[0px] lg:mr-[20%]" : "ml-[0px] lg:ml-[20%]"}  p-[15px] md:p-[30px] min-h-[85vh] text-sm md:text-base`}>
       {userDoc?.role == "user" ? (
@@ -350,7 +352,7 @@ function Settings() {
           <Toaster position="top-center" reverseOrder={false} />
         </>
       ) : (
-        <p>{isArabic ? "This page is for normal users!" : "هذه الصفحة للمستخدمين العاديين!"}</p>
+        <p className={`${isArabic ? "arabic-font text-right" : ""}`}>{!isArabic ? "This page is for normal users!" : "هذه الصفحة للمستخدمين العاديين!"}</p>
       )}
     </section>
   );

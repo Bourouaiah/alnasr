@@ -34,10 +34,10 @@ function UserCollectData() {
   const [gender, setGender] = useState(null);
   const [userEmail, setUserEmail] = useState(email);
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [country, setCountry] = useState("");
   const [phoneNumber, setPhoneNumber] = useState();
-  const [userId, setUserId] = useState("");
   const [age, setAge] = useState("");
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
@@ -94,18 +94,15 @@ function UserCollectData() {
     const value = e.target.value;
 
     // Check if the value is a number and within the desired range
-    if ((/^\d*$/.test(value) && value <= 120) || value === '') {
+    if ((/^\d*$/.test(value) && value <= 120) || value === "") {
       setAge(value);
     }
   };
-
-  useEffect(() => {
-    setUserId(generateuserId());
-  }, []);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (
+    if (password != confirmPassword) {
+      toast.error("Plase confirm your password");
+    } else if (
       firstName === "" ||
       lastName === "" ||
       profilePicture == null ||
@@ -304,6 +301,31 @@ function UserCollectData() {
             <div className="flex flex-col gap-[10px]">
               <label
                 className="font-semibold text-second-black"
+                htmlFor="user-password"
+              >
+                Confirm password
+              </label>
+              <div className="flex items-center justify-between rounded-md p-[8px] border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-main-blue">
+                <input
+                  className="outline-none border-none w-[75%]"
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  type={`${showPassword ? "text" : "password"}`}
+                  name="user-password"
+                  id="user-password"
+                  placeholder="Confirm Password"
+                  value={confirmPassword}
+                />
+                <div
+                  onClick={handleTogglePassword}
+                  className="text-second-gray cursor-pointer"
+                >
+                  {showPassword ? <FaEye /> : <FaEyeSlash />}
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col gap-[10px]">
+              <label
+                className="font-semibold text-second-black"
                 htmlFor="first-name"
               >
                 Your phone number
@@ -363,23 +385,6 @@ function UserCollectData() {
                 onChange={(e) => setTown(e.target.value)}
                 placeholder="eg: Douera"
                 maxLength={15}
-              />
-            </div>
-            <div className="flex flex-col gap-[10px]">
-              <label
-                className="font-semibold text-second-black"
-                htmlFor="card-id"
-              >
-                User Id
-              </label>
-              <input
-                className="border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md"
-                type="text"
-                name="card-id"
-                id="card-id"
-                value={userId}
-                disabled
-                maxLength={16}
               />
             </div>
             <div className="flex flex-col gap-[10px]">

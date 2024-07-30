@@ -22,13 +22,17 @@ function Login() {
 
   const loginInWithUser = (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        navigate("/alnasr/home");
-      })
-      .catch((err) => {
-        toast.error(err.message);
-      });
+    if (email == "" || password == "") {
+      toast.error("Fill the required data plase!");
+    } else {
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          navigate("/alnasr/home");
+        })
+        .catch((err) => {
+          toast.error("Incorrect password, try again!");
+        });
+    }
   };
 
   return (
@@ -41,7 +45,11 @@ function Login() {
         <h2 className="text-second-black text-2xl md:text-3xl text-center font-semibold">
           {isArabic ? "أهلاً بعودتك" : "Welcome Back"}
         </h2>
-        <div className={`${isArabic ? "flex-row-reverse" : ""} flex justify-center gap-[5px] text-sm my-[20px]`}>
+        <div
+          className={`${
+            isArabic ? "flex-row-reverse" : ""
+          } flex justify-center gap-[5px] text-sm my-[20px]`}
+        >
           <p className="text-second-black">
             {isArabic ? "جديد في الناصر ؟" : "New to alnasr"}
           </p>
@@ -55,11 +63,18 @@ function Login() {
       </div>
       <form className="mb-[20px]" action="">
         <div className="flex flex-col gap-[8px]">
-          <label className={`${isArabic ? "text-right" : ""} text-second-black text-sm`} htmlFor="user-email">
+          <label
+            className={`${
+              isArabic ? "text-right" : ""
+            } text-second-black text-sm`}
+            htmlFor="user-email"
+          >
             {isArabic ? "الِايميل الخاص بك" : "Your email adress"}
           </label>
           <input
-            className={`${isArabic ? "text-right" : ""} rounded-[5px] p-[8px] border-2 border-third-black hover:border-second-black duration-500 ease-in-out outline-[#000]`}
+            className={`${
+              isArabic ? "text-right" : ""
+            } rounded-[5px] p-[8px] border-2 border-third-black hover:border-second-black duration-500 ease-in-out outline-[#000]`}
             type="email"
             name="user-email"
             placeholder={isArabic ? "الِايميل" : "Email adress"}
@@ -69,12 +84,23 @@ function Login() {
           />
         </div>
         <div className="flex flex-col gap-[8px] my-[30px]">
-          <label className={`${isArabic ? "text-right" : ""} text-second-black text-sm`} htmlFor="user-password">
+          <label
+            className={`${
+              isArabic ? "text-right" : ""
+            } text-second-black text-sm`}
+            htmlFor="user-password"
+          >
             {isArabic ? "كلمة السر الخاصة بك" : "Your password"}
           </label>
-          <div className={`${isArabic ? "flex-row-reverse" : "flex-row"} flex justify-between items-center rounded-md p-[8px] border-2 border-third-gray hover:border-second-gray duration-500 ease-in-out outline-main-blue`}>
+          <div
+            className={`${
+              isArabic ? "flex-row-reverse" : "flex-row"
+            } flex justify-between items-center rounded-md p-[8px] border-2 border-third-gray hover:border-second-gray duration-500 ease-in-out outline-main-blue`}
+          >
             <input
-              className={`${isArabic ? "text-right" : ""} outline-none border-none flex-grow`}
+              className={`${
+                isArabic ? "text-right" : ""
+              } outline-none border-none flex-grow`}
               onChange={(e) => setPassword(e.target.value)}
               type={`${showPassword ? "text" : "password"}`}
               name="user-password"
@@ -98,7 +124,9 @@ function Login() {
         </button>
       </form>
       <Link className="text-main-black font-semibold underline">
-        <p className={`${isArabic ? "text-right" : ''}`}>{isArabic ? "حدث خطأ أثناء تسجيل الدخول ؟" : "Trouble logging in?"}</p>
+        <p className={`${isArabic ? "text-right" : ""}`}>
+          {isArabic ? "حدث خطأ أثناء تسجيل الدخول ؟" : "Trouble logging in?"}
+        </p>
       </Link>
       <Toaster position="top-center" reverseOrder={false} />
     </section>

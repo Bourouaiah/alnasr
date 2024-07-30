@@ -9,7 +9,7 @@ export default {
       'white': "#ffffff",
       'main-black': "#000000",
       'main-yellow': "#FFC265",
-      'second-yellow': "#FCD191",
+      'second-yellow': "#ffc36a",
       'second-black': "#525252",
       'special-blue': "#F3FFFE",
     }

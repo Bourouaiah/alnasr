@@ -10,7 +10,7 @@ function Landing() {
   const isArabic = language === "ar";
   return (
     <section
-      id="Home"
+      id="home"
       className={`${
         isArabic ? "arabic-font flex-row-reverse text-right" : ""
       } pt-[120px] px-[20px] md:px-[50px] py-[50px] gap-[50px] lg:gap-[20px] flex flex-wrap md:flex-nowrap items-center`}

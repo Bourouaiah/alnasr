@@ -31,7 +31,7 @@ function ServicesPage() {
   const { language } = useContext(AppContext);
   const isArabic = language === "ar";
   return (
-    <section className={`${isArabic ? "arabic-font" : ""} p-[15px] md:p-[50px]`}>
+    <section id="services" className={`${isArabic ? "arabic-font" : ""} p-[15px] md:p-[50px]`}>
       <h1 className={`${isArabic ? "text-right" : "text-left"} mb-[20px] md:mb-[40px] text-xl md:text-3xl font-bold`}>{isArabic ? "بعض من خدماتنا" : "Some of our services"}</h1>
       <div>
         <h2 className={`${isArabic ? "text-right" : "text-left"} text-base md:text-lg font-semibold`}>{isArabic ? "النقل" : "Transports"}</h2>

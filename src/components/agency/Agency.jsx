@@ -9,7 +9,7 @@ function Agency() {
   const data = agencyData[language];
   const isArabic = language === "ar";
   return (
-    <section id="Agency" className={`${isArabic ? "arabic-font flex-row-reverse lg:gap-[50px]" : ""} px-[20px] md:px-[50px] py-[50px] flex flex-wrap md:flex-nowrap gap-[50px] lg:gap-[20px] items-center bg-[#F3FFFE]`}>
+    <section id="agency" className={`${isArabic ? "arabic-font flex-row-reverse lg:gap-[50px]" : ""} px-[20px] md:px-[50px] py-[50px] flex flex-wrap md:flex-nowrap gap-[50px] lg:gap-[20px] items-center bg-[#F3FFFE]`}>
       <div className="w-full md:w-[50%] mx-auto">
         <img className="w-[100%] lg:w-[80%]" src={landingTwo} alt="" />
       </div>

@@ -11,7 +11,7 @@ function Gallery() {
   const isArabic = language === "ar";
   return (
     <section
-      id="Gallery"
+      id="gallery"
       className={`${
         isArabic ? "arabic-font" : ""
       } px-[20px] md:px-[50px] pt-[50px] bg-[#fff]`}
