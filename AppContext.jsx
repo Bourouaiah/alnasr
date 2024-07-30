@@ -4,6 +4,7 @@ export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const [isNavBarShown, setIsNavBarShown] = useState(false);
+  const [isMainNavBarShown, setIsMainNavBarShown] = useState(false);
   const [language, setLanguage] = useState(getInitialLanguage());
 
   useEffect(() => {
@@ -19,6 +20,8 @@ export const AppProvider = ({ children }) => {
       value={{
         isNavBarShown,
         setIsNavBarShown,
+        isMainNavBarShown,
+        setIsMainNavBarShown,
         language,
         changeLanguage,
       }}

@@ -72,7 +72,7 @@ function Login() {
           <label className={`${isArabic ? "text-right" : ""} text-second-black text-sm`} htmlFor="user-password">
             {isArabic ? "كلمة السر الخاصة بك" : "Your password"}
           </label>
-          <div className={`${isArabic ? "flex-row-reverse" : ""} flex flex-row-reverse justify-between items-center rounded-md p-[8px] border-2 border-third-gray hover:border-second-gray duration-500 ease-in-out outline-main-blue`}>
+          <div className={`${isArabic ? "flex-row-reverse" : "flex-row"} flex justify-between items-center rounded-md p-[8px] border-2 border-third-gray hover:border-second-gray duration-500 ease-in-out outline-main-blue`}>
             <input
               className={`${isArabic ? "text-right" : ""} outline-none border-none flex-grow`}
               onChange={(e) => setPassword(e.target.value)}

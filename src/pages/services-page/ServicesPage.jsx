@@ -34,8 +34,8 @@ function ServicesPage() {
     <section
       className={`${
         isArabic
-          ? "arabic-font mr-[100px] lg:mr-[20%]"
-          : "ml-[100px] lg:ml-[20%]"
+          ? "arabic-font mr-[0px] lg:mr-[20%]"
+          : "ml-[0px] lg:ml-[20%]"
       }  p-[15px] md:p-[30px] min-h-[85vh]`}
     >
       {userDoc?.role === "admin" ? (

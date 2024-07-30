@@ -36,7 +36,7 @@ function Overview() {
   const lastTwoFood = food?.slice(-2);
 
   return (
-    <section className={`${isArabic ? "arabic-font mr-[100px] lg:mr-[20%]" : "ml-[100px] lg:ml-[20%]"}  p-[15px] md:p-[30px] min-h-[85vh]`}>
+    <section className={`${isArabic ? "arabic-font mr-[0px] lg:mr-[20%]" : "ml-[0px] lg:ml-[20%]"}  p-[15px] md:p-[30px] min-h-[85vh]`}>
       <div>
         <h1 className={`${isArabic ? "text-right" : ""} text-main-black text-lg md:text-2xl`}>{isArabic ? "آخر المستخدمين" : "Last users"}</h1>
         <div className="flex flex-col mt-[20px] overflow-x-auto pb-[10px] text-sm md:text-base bg-[#f3f4f6] rounded-lg p-[20px]">
@@ -82,7 +82,7 @@ function Overview() {
               </tbody>
             </table>
           ) : (
-            <p>{isArabic ? "لا يوجد مستخدمين حاليا" : "No Users found"}</p>
+            <p className={`${isArabic ? "text-right" : "text-left"}`}>{isArabic ? "لا يوجد مستخدمين حاليا" : "No Users found"}</p>
           )}
         </div>
       </div>

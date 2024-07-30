@@ -77,7 +77,6 @@ function Settings() {
   const handleAgeChange = (e) => {
     const value = e.target.value;
 
-    // Check if the value is a number and within the desired range
     if ((/^\d*$/.test(value) && value <= 120) || value === "") {
       setAge(value);
     }
@@ -127,7 +126,7 @@ function Settings() {
   };
 
   return (
-    <section className={`${isArabic ? "arabic-font mr-[100px] lg:mr-[20%]" : "ml-[100px] lg:ml-[20%]"}  p-[15px] md:p-[30px] min-h-[85vh] text-sm md:text-base`}>
+    <section className={`${isArabic ? "arabic-font mr-[0px] lg:mr-[20%]" : "ml-[0px] lg:ml-[20%]"}  p-[15px] md:p-[30px] min-h-[85vh] text-sm md:text-base`}>
       {userDoc?.role == "user" ? (
         <>
           <form
@@ -139,7 +138,7 @@ function Settings() {
                 className="font-semibold text-second-black"
                 htmlFor="first-name"
               >
-                First Name
+                {isArabic ? "الاِسم الأول" : "First Name"}
               </label>
               <input
                 className="border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md"
@@ -157,7 +156,7 @@ function Settings() {
                 className="font-semibold text-second-black"
                 htmlFor="last-name"
               >
-                Last Name
+                {isArabic ? "الاِسم الأخير" : "Last Name"}
               </label>
               <input
                 className="border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md"
@@ -175,7 +174,7 @@ function Settings() {
                 className="font-semibold text-second-black"
                 htmlFor="profile-picture"
               >
-                Profile Picture
+                {isArabic ? "صورة الحساب" : "Profile Picture"}
               </label>
               <div className="flex items-center justify-between border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md">
                 <input
@@ -194,7 +193,7 @@ function Settings() {
                 className="font-semibold text-second-black"
                 htmlFor="gender"
               >
-                Gender
+                {isArabic ? "الجنس" : "Gender"}
               </label>
               <Select
                 className="border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[1px] rounded-md"
@@ -208,7 +207,7 @@ function Settings() {
                 className="font-semibold text-second-black"
                 htmlFor="card-id"
               >
-                Your Age
+                {isArabic ? "السّن" : "Your Age"}
               </label>
               <input
                 className="border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md"
@@ -226,7 +225,7 @@ function Settings() {
                 className="font-semibold text-second-black"
                 htmlFor="user-email"
               >
-                Email
+                {isArabic ? "الاِيميل" : "Email"}
               </label>
               <input
                 className="border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md"
@@ -242,7 +241,7 @@ function Settings() {
                 className="font-semibold text-second-black"
                 htmlFor="first-name"
               >
-                Your phone number
+                {isArabic ? "رقم الهاتف" : "Your phone number"}
               </label>
               <PhoneInput
                 className="border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md"
@@ -256,7 +255,7 @@ function Settings() {
                 className="font-semibold text-second-black"
                 htmlFor="first-name"
               >
-                Your country
+                {isArabic ? "البلد" : "Your country"}
               </label>
               <Select
                 className="border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[1px] rounded-md"
@@ -270,7 +269,7 @@ function Settings() {
                 className="font-semibold text-second-black"
                 htmlFor="first-name"
               >
-                Your city
+                {isArabic ? "المدينة" : "Your city"}
               </label>
               <input
                 className="border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md"
@@ -288,7 +287,7 @@ function Settings() {
                 className="font-semibold text-second-black"
                 htmlFor="first-name"
               >
-                Your town
+                {isArabic ? "البلدة" : "Your town"}
               </label>
               <input
                 className="border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md"
@@ -306,7 +305,7 @@ function Settings() {
                 className="font-semibold text-second-black"
                 htmlFor="card-id"
               >
-                Latitude
+                {isArabic ? "خط العرض" : "Latitude"}
               </label>
               <input
                 className="border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md"
@@ -323,7 +322,7 @@ function Settings() {
                 className="font-semibold text-second-black"
                 htmlFor="card-id"
               >
-                Longitude
+                {isArabic ? "خط الطول" : "Longitude"}
               </label>
               <input
                 className="border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md"
@@ -339,19 +338,19 @@ function Settings() {
               onClick={handleLocationClick}
               className="w-full bg-second-yellow text-second-black hover:text-[#000] mt-[20px] p-[8px] rounded-2xl font-semibold hover:bg-main-yellow duration-300 ease-in-out"
             >
-              Get my location
+              {isArabic ? "تحديد موقعي" : "Get my location"}
             </button>
             <button
               onClick={handleSubmit}
               className="w-full bg-second-yellow text-second-black hover:text-[#000] mt-[20px] p-[8px] rounded-2xl font-semibold hover:bg-main-yellow duration-300 ease-in-out"
             >
-              Next
+              {isArabic ? "حفظ" : "Save"}
             </button>
           </form>
           <Toaster position="top-center" reverseOrder={false} />
         </>
       ) : (
-        <p>This page is for normal users!</p>
+        <p>{isArabic ? "This page is for normal users!" : "هذه الصفحة للمستخدمين العاديين!"}</p>
       )}
     </section>
   );

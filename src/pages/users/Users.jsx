@@ -39,7 +39,7 @@ function Users() {
   });
 
   return (
-    <section className={`${isArabic ? "arabic-font mr-[100px] lg:mr-[20%]" : "ml-[100px] lg:ml-[20%]"}  p-[15px] md:p-[30px] min-h-[85vh]`}>
+    <section className={`${isArabic ? "arabic-font mr-[0px] lg:mr-[20%]" : "ml-[0px] lg:ml-[20%]"}  p-[15px] md:p-[30px] min-h-[85vh]`}>
       {userDoc?.role === "user" && (
         <h1 className="text-lg md:text-xl font-semibold mb-[20px]">
           Nearby users
