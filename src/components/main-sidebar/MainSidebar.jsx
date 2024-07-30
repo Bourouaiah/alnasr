@@ -24,7 +24,7 @@ function MainSidebar() {
           ? "right-[-100px]" :
           isMainNavBarShown && !isArabic ?
           "left-[0px]" : "left-[-100px]"
-      } fixed mainsidebar-shadow p-[30px] top-0 h-full w-[100px] lg:w-[20%] bg-white duration-200 ease-out`}
+      } fixed mainsidebar-shadow p-[30px] top-0 h-full w-[100px] lg:w-[20%] bg-white duration-200 ease-out z-10`}
     >
       <div className="flex justify-center">
         <img className="w-[90px]" src={logo} alt="logo" />

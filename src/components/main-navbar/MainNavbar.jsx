@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUserCircle, FaBars, FaChevronDown, FaCircle } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
 import { auth } from "../../../firebase";
@@ -120,11 +120,16 @@ function MainNavbar() {
           )}
         </div>
         <div>
-          {userDoc?.role == "user" ? (
-            <img src={userDoc?.profilePicture} className="w-[30px] h-[30px] object-cover rounded-full border-2 border-second-black" />
-          ) : (
-            <FaCircle />
-          )}
+          <Link to="/alnasr/home/settings">
+            {userDoc?.role == "user" ? (
+              <img
+                src={userDoc?.profilePicture}
+                className="w-[30px] h-[30px] object-cover rounded-full border-2 border-second-black"
+              />
+            ) : (
+              <FaCircle />
+            )}
+          </Link>
         </div>
         <div className="cursor-pointer" onClick={handleSignOut}>
           <IoLogOut />

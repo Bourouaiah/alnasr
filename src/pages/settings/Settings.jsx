@@ -137,13 +137,13 @@ function Settings() {
           >
             <div className="flex flex-col gap-[10px]">
               <label
-                className="font-semibold text-second-black"
+                className={`${isArabic ? "text-right" : ""} font-semibold text-second-black`}
                 htmlFor="first-name"
               >
                 {isArabic ? "الاِسم الأول" : "First Name"}
               </label>
               <input
-                className="border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md"
+                className={`${isArabic ? "text-right" : ""} border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md`}
                 type="text"
                 name="first-name"
                 id="first-name"
@@ -155,13 +155,13 @@ function Settings() {
             </div>
             <div className="flex flex-col gap-[10px]">
               <label
-                className="font-semibold text-second-black"
+                className={`${isArabic ? "text-right" : ""} font-semibold text-second-black`}
                 htmlFor="last-name"
               >
                 {isArabic ? "الاِسم الأخير" : "Last Name"}
               </label>
               <input
-                className="border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md"
+                className={`${isArabic ? "text-right" : ""} border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md`}
                 type="text"
                 name="last-name"
                 id="last-name"
@@ -173,14 +173,14 @@ function Settings() {
             </div>
             <div {...getRootProps()} className="flex flex-col gap-[10px]">
               <label
-                className="font-semibold text-second-black"
+                className={`${isArabic ? "text-right" : ""} font-semibold text-second-black`}
                 htmlFor="profile-picture"
               >
                 {isArabic ? "صورة الحساب" : "Profile Picture"}
               </label>
               <div className="flex items-center justify-between border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md">
                 <input
-                  className="flex-1 w-full gap-[2px] cursor-pointer outline-none"
+                  className={`${isArabic ? "text-right" : ""} flex-1 w-full gap-[2px] cursor-pointer outline-none`}
                   type="text"
                   name="profile-picture"
                   id="profile-picture"
@@ -192,7 +192,7 @@ function Settings() {
             </div>
             <div className="flex flex-col gap-[10px]">
               <label
-                className="font-semibold text-second-black"
+                className={`${isArabic ? "text-right" : ""} font-semibold text-second-black`}
                 htmlFor="gender"
               >
                 {isArabic ? "الجنس" : "Gender"}
@@ -206,13 +206,13 @@ function Settings() {
             </div>
             <div className="flex flex-col gap-[10px]">
               <label
-                className="font-semibold text-second-black"
+                className={`${isArabic ? "text-right" : ""} font-semibold text-second-black`}
                 htmlFor="card-id"
               >
                 {isArabic ? "السّن" : "Your Age"}
               </label>
               <input
-                className="border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md"
+                className={`${isArabic ? "text-right" : ""} border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md`}
                 placeholder="eg: 27"
                 type="number"
                 name="age"
@@ -224,13 +224,13 @@ function Settings() {
             </div>
             <div className="flex flex-col gap-[10px]">
               <label
-                className="font-semibold text-second-black"
+                className={`${isArabic ? "text-right" : ""} font-semibold text-second-black`}
                 htmlFor="user-email"
               >
                 {isArabic ? "الاِيميل" : "Email"}
               </label>
               <input
-                className="border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md"
+                className={`${isArabic ? "text-right" : ""} border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md`}
                 type="email"
                 name="user-email"
                 id="user-email"
@@ -240,7 +240,7 @@ function Settings() {
             </div>
             <div className="flex flex-col gap-[10px]">
               <label
-                className="font-semibold text-second-black"
+                className={`${isArabic ? "text-right" : ""} font-semibold text-second-black`}
                 htmlFor="first-name"
               >
                 {isArabic ? "رقم الهاتف" : "Your phone number"}
@@ -254,7 +254,7 @@ function Settings() {
             </div>
             <div className="flex flex-col gap-[10px]">
               <label
-                className="font-semibold text-second-black"
+                className={`${isArabic ? "text-right" : ""} font-semibold text-second-black`}
                 htmlFor="first-name"
               >
                 {isArabic ? "البلد" : "Your country"}
@@ -268,13 +268,13 @@ function Settings() {
             </div>
             <div className="flex flex-col gap-[10px]">
               <label
-                className="font-semibold text-second-black"
+                className={`${isArabic ? "text-right" : ""} font-semibold text-second-black`}
                 htmlFor="first-name"
               >
                 {isArabic ? "المدينة" : "Your city"}
               </label>
               <input
-                className="border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md"
+                className={`${isArabic ? "text-right" : ""} border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md`}
                 type="text"
                 name="first-name"
                 id="first-name"
@@ -286,13 +286,13 @@ function Settings() {
             </div>
             <div className="flex flex-col gap-[10px]">
               <label
-                className="font-semibold text-second-black"
+                className={`${isArabic ? "text-right" : ""} font-semibold text-second-black`}
                 htmlFor="first-name"
               >
                 {isArabic ? "البلدة" : "Your town"}
               </label>
               <input
-                className="border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md"
+                className={`${isArabic ? "text-right" : ""} border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md`}
                 type="text"
                 name="first-name"
                 id="first-name"
@@ -304,13 +304,13 @@ function Settings() {
             </div>
             <div className="flex flex-col gap-[10px]">
               <label
-                className="font-semibold text-second-black"
+                className={`${isArabic ? "text-right" : ""} font-semibold text-second-black`}
                 htmlFor="card-id"
               >
                 {isArabic ? "خط العرض" : "Latitude"}
               </label>
               <input
-                className="border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md"
+                className={`${isArabic ? "text-right" : ""} border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md`}
                 type="text"
                 name="latitude"
                 id="latitude"
@@ -321,13 +321,13 @@ function Settings() {
             </div>
             <div className="flex flex-col gap-[10px]">
               <label
-                className="font-semibold text-second-black"
+                className={`${isArabic ? "text-right" : ""} font-semibold text-second-black`}
                 htmlFor="card-id"
               >
                 {isArabic ? "خط الطول" : "Longitude"}
               </label>
               <input
-                className="border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md"
+                className={`${isArabic ? "text-right" : ""} border-2 border-second-black hover:border-second-gray duration-500 ease-in-out outline-second-black p-[8px] rounded-md`}
                 type="text"
                 name="longitude"
                 id="longitude"
